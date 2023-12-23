@@ -1,0 +1,72 @@
+@import "@radix-ui/colors/red.css";
+@import "@radix-ui/colors/gray.css";
+
+@font-face {
+  font-family: Montserrat;
+  src: url(../assets/fonts/Montserrat-VariableFont_wght.ttf);
+}
+
+.homeContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 1280px;
+  margin: auto;
+}
+
+.mainContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 0.5rem;
+  max-width: 100%;
+}
+
+.posterContainer {
+  max-width: 300px;
+  border-radius: 10px;
+  border: 10px solid white;
+  @apply shadow;
+}
+
+.detailsContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 900px;
+  border-radius: 10px;
+  border: 10px solid white;
+  @apply shadow;
+}
+
+.lineContainer {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.poster {
+  width: 100%;
+  height: auto;
+}
+
+.title {
+  font-family: Montserrat;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.red {
+  color: #ff0000;
+}
+
+.gray {
+  color: var(--gray-9);
+}
+
+.description {
+  font-size: 22px;
+  font-family: Montserrat;
+}

@@ -1,0 +1,53 @@
+@import "@radix-ui/colors/black-alpha.css";
+@import "@radix-ui/colors/red.css";
+
+@font-face {
+  font-family: Jua;
+  src: url("../assets/fonts/Jua-Regular.ttf");
+}
+
+.navContainer {
+  display: flex;
+  height: 5rem;
+  align-items: center;
+  padding: 1rem;
+  justify-content: center;
+  @apply shadow-sm;
+}
+
+.navBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1280px;
+  padding: 1%;
+  gap: 1rem;
+}
+
+.navChild {
+  width: 100%;
+  max-width: 300px;
+  gap: 1rem;
+}
+
+.title {
+  color: #ff0000;
+  font-family: Jua;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.searchForm {
+  width: 100%;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.menu {
+  align-items: center;
+  display: flex;
+  justify-content: right;
+}
