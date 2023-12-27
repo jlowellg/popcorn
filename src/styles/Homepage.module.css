@@ -1,0 +1,57 @@
+@import "@radix-ui/colors/gray.css";
+
+@font-face {
+  font-family: Montserrat;
+  src: url(../assets/fonts/Montserrat-VariableFont_wght.ttf);
+}
+
+.listMainContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0.5rem;
+}
+
+.listSubContainer {
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 2rem 1rem 0;
+  gap: 0.2rem;
+}
+
+.labelContainer {
+  margin: 1rem 0.5rem 0.5rem 0.5rem;
+}
+
+.label {
+  font-family: Montserrat;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.posterContainer {
+  display: flex;
+  align-items: center;
+  max-width: 220px;
+  min-height: 320px;
+  border-radius: 10px;
+  border: 10px solid white;
+  @apply shadow;
+}
+
+.poster {
+  width: 100%;
+  height: auto;
+}
+
+.titleContainer {
+  max-width: 220px;
+}
+
+.title {
+  text-align: center;
+  font-family: Montserrat;
+  font-size: 14px;
+  font-weight: 600;
+}

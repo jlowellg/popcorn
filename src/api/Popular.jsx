@@ -1,47 +1,51 @@
-import HomeCSS from "../styles/Home.module.css";
+import { useContext, useEffect } from "react";
+import HeroCSS from "../styles/Hero.module.css";
 import GenreLists from "./GenreLists";
+import DataContext from "../context/DataContext";
 
-const Popular = ({ movies }) => {
+const Popular = () => {
+  const { movies, search } = useContext(DataContext);
+
   return (
-    <>
+    <div className={`${HeroCSS.heroContainer}`}>
       {movies.map((movie) => (
-        <div className={`${HomeCSS.mainContainer}`} key={movie.id}>
-          <div className={`${HomeCSS.posterContainer}`}>
+        <div className={`${HeroCSS.mainContainer}`} key={movie.id}>
+          <div className={`${HeroCSS.posterContainer}`}>
             <img
-              className={` ${HomeCSS.poster}`}
+              className={` ${HeroCSS.poster}`}
               src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
             />
           </div>
-          <div className={`${HomeCSS.detailsContainer}`}>
-            <div className={`${HomeCSS.lineContainer}`}>
-              <div className={`${HomeCSS.title}`}>Title:</div>
-              <div className={`${HomeCSS.title} ${HomeCSS.red}`}>
-                {movie.title}
+          <div className={`${HeroCSS.detailsContainer}`}>
+            <div className={`${HeroCSS.lineContainer}`}>
+              <div className={`${HeroCSS.title}`}>Title:</div>
+              <div className={`${HeroCSS.title} ${HeroCSS.red}`}>
+                {movie.title || movie.name}
+              </div>
+            </div>
+            <div className={`${HeroCSS.lineContainer}`}>
+              <div className={`${HeroCSS.title}`}>Release Date:</div>
+              <div className={`${HeroCSS.title} ${HeroCSS.gray}`}>
+                {movie.release_date}
               </div>
             </div>
             <hr />
-            <div className={`${HomeCSS.title}`}>Overview:</div>
-            <div className={`${HomeCSS.description}`}>{movie.overview}</div>
+            <div className={`${HeroCSS.title}`}>Overview:</div>
+            <div className={`${HeroCSS.description}`}>{movie.overview}</div>
             <hr />
-            <div className={`${HomeCSS.lineContainer}`}>
-              <div className={`${HomeCSS.title}`}>Genre:</div>
+            <div className={`${HeroCSS.lineContainer}`}>
+              <div className={`${HeroCSS.title}`}>Genre:</div>
               <div
-                className={`${HomeCSS.lineContainer} ${HomeCSS.title} ${HomeCSS.gray}`}
+                className={`${HeroCSS.lineContainer} ${HeroCSS.title} ${HeroCSS.gray}`}
               >
                 <GenreLists genre_ids={`${movie.genre_ids}`} />
               </div>
             </div>
             <hr />
-            <div className={`${HomeCSS.lineContainer}`}>
-              <div className={`${HomeCSS.title}`}>Release Date:</div>
-              <div className={`${HomeCSS.description}`}>
-                {movie.release_date}
-              </div>
-            </div>
           </div>
         </div>
       ))}
-    </>
+    </div>
   );
 };
 

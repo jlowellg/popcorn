@@ -20,7 +20,7 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  max-width: 1280px;
+  max-width: 1440px;
   padding: 1%;
   gap: 1rem;
 }
@@ -38,6 +38,14 @@
   font-weight: bold;
 }
 
+.title:hover {
+  cursor: pointer;
+}
+
+.searchFormContainer {
+  width: 100%;
+}
+
 .searchForm {
   width: 100%;
   align-items: center;
@@ -50,4 +58,15 @@
   align-items: center;
   display: flex;
   justify-content: right;
+}
+
+.searchButton {
+  height: 30px;
+  width: 30px;
+  color: red;
+}
+
+.searchButton:hover {
+  color: black;
+  cursor: pointer;
 }

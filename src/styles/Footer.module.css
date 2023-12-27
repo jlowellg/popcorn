@@ -1,0 +1,9 @@
+.footerContainer {
+  display: flex;
+  height: 3rem;
+  align-items: center;
+  padding: 1rem;
+  justify-content: center;
+  margin-top: auto;
+  @apply shadow-inner;
+}
