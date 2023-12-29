@@ -11,6 +11,10 @@ export const DataProvider = ({ children }) => {
   const [trendingTVShows, setTrendingTVShows] = useState([]);
   const [popularMovies, setPopularMovies] = useState([]);
   const [popularTVShows, setPopularTVShows] = useState([]);
+  const [movieInfo, setMovieInfo] = useState([]);
+  const [TVInfo, setTVInfo] = useState([]);
+  const [genres, setGenres] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   return (
     <DataContext.Provider
@@ -29,6 +33,14 @@ export const DataProvider = ({ children }) => {
         setPopularMovies,
         popularTVShows,
         setPopularTVShows,
+        movieInfo,
+        setMovieInfo,
+        TVInfo,
+        setTVInfo,
+        genres,
+        setGenres,
+        isLoading,
+        setIsLoading,
       }}
     >
       {children}
@@ -37,9 +49,3 @@ export const DataProvider = ({ children }) => {
 };
 
 export default DataContext;
-
-/*category == "movies"
-        ? setUrl(`https://api.themoviedb.org/3/search/movie?query=${search}`)
-        : category == "tv-shows"
-        ? setUrl(`https://api.themoviedb.org/3/search/tv?query=${search}`)
-        : setUrl(`https://api.themoviedb.org/3/search/multi?query=${search}`);*/

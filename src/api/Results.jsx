@@ -1,19 +1,13 @@
 import React from "react";
-import { useContext, useState, useEffect } from "react";
-import ResultsCSS from "../../styles/Results.module.css";
-import DataContext from "../../context/DataContext";
-import { useParams } from "react-router-dom";
+import { useContext } from "react";
+import DataContext from "../context/DataContext";
+import { Link } from "react-router-dom";
+import ResultsCSS from "../styles/Results.module.css";
 
-const SearchResults = () => {
-  const { category, search, results } = useContext(DataContext);
-  const { query } = useParams();
-
+const Results = () => {
+  const { results } = useContext(DataContext);
   return (
-    <div className={`${ResultsCSS.mainContainer}`}>
-      <div className={`${ResultsCSS.label}`}>Search: "{query}"</div>
-      {results.length ? null : (
-        <div className={`${ResultsCSS.noResult}`}>No results to show.</div>
-      )}
+    <>
       {results.map((result) => (
         <div className={`${ResultsCSS.resultsContainer}`} key={result.id}>
           <div className={`${ResultsCSS.posterContainer}`}>
@@ -23,14 +17,15 @@ const SearchResults = () => {
             />
           </div>
           <div className={`${ResultsCSS.detailsContainer}`}>
-            <div className={`${ResultsCSS.lineContainer} ${ResultsCSS.title}`}>
-              <div>Title:</div>
-              <div className={`${ResultsCSS.red}`}>
+            <div
+              className={`${ResultsCSS.lineContainer} ${ResultsCSS.title} ${ResultsCSS.red}`}
+            >
+              <Link to={`/${result.title ? "movie" : "tv"}/${result.id}`}>
                 {result.title || result.name}
-              </div>
+              </Link>
             </div>
             <div
-              className={`${ResultsCSS.lineContainer} ${ResultsCSS.description} ${ResultsCSS.gray}`}
+              className={`${ResultsCSS.lineContainer} ${ResultsCSS.description}`}
             >
               <div>Type:</div>
               <div className={`${ResultsCSS.bold}`}>
@@ -45,8 +40,8 @@ const SearchResults = () => {
           </div>
         </div>
       ))}
-    </div>
+    </>
   );
 };
 
-export default SearchResults;
+export default Results;

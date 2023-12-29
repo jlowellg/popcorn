@@ -1,20 +1,20 @@
 import React from "react";
 import HeroCSS from "../../styles/Hero.module.css";
-import GetTrendingMovies from "../../api/GetTrendingMovies";
-import GetTrendingTVShows from "../../api/GetTrendingTVShows";
-import GetPopularMovies from "../../api/GetPopularMovies";
-import GetPopularTVShows from "../../api/GetPopularTVShows";
+import TrendingMovies from "../../api/TrendingMovies";
+import TrendingTVShows from "../../api/TrendingTVShows";
+import PopularMovies from "../../api/PopularMovies";
+import PopularTVShows from "../../api/PopularTVShows";
 
 const Home = () => {
   return (
     <div className={`${HeroCSS.heroContainer}`}>
-      <GetTrendingMovies />
+      <TrendingMovies />
       <hr />
-      <GetTrendingTVShows />
+      <TrendingTVShows />
       <hr />
-      <GetPopularMovies />
+      <PopularMovies />
       <hr />
-      <GetPopularTVShows />
+      <PopularTVShows />
     </div>
   );
 };

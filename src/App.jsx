@@ -6,7 +6,9 @@ import Home from "./components/main/Home";
 import Footer from "./components/main/Footer";
 import { DataProvider } from "./context/DataContext";
 import { KeyProvider } from "./context/KeyContext";
-import GetSearchResults from "./api/GetSearchResults";
+import SearchResults from "./api/SearchResults";
+import GetMovieInfo from "./api/GetMovieInfo";
+import GetTVInfo from "./api/GetTVInfo";
 
 function App() {
   return (
@@ -17,7 +19,9 @@ function App() {
           <KeyProvider>
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/search/:query" element={<GetSearchResults />} />
+              <Route path="/search/:query" element={<SearchResults />} />
+              <Route path="/movie/:id" element={<GetMovieInfo />} />
+              <Route path="/tv/:id" element={<GetTVInfo />} />
             </Routes>
           </KeyProvider>
           <Footer />
