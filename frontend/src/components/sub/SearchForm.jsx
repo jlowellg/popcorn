@@ -18,6 +18,7 @@ const SearchForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setQuery("");
     {
       query.length ? navigate(`/search/${query}`) : null;
     }

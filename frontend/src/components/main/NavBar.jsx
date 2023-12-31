@@ -14,7 +14,7 @@ const NavBar = () => {
           <SearchForm />
         </div>
         <div className={`${NavBarCSS.menu} ${NavBarCSS.navChild}`}>
-          Home | Sign in
+          <Link to="/">Home </Link> | <Link to="/login">Sign in</Link>
         </div>
       </div>
     </nav>

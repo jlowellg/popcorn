@@ -9,6 +9,7 @@ import { KeyProvider } from "./context/KeyContext";
 import SearchResults from "./api/SearchResults";
 import GetMovieInfo from "./api/GetMovieInfo";
 import GetTVInfo from "./api/GetTVInfo";
+import LoginPage from "./components/main/LoginPage";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
               <Route path="/search/:query" element={<SearchResults />} />
               <Route path="/movie/:id" element={<GetMovieInfo />} />
               <Route path="/tv/:id" element={<GetTVInfo />} />
+              <Route path="/login" element={<LoginPage />} />
             </Routes>
           </KeyProvider>
           <Footer />
