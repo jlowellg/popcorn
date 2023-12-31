@@ -24,4 +24,4 @@ dist-ssr
 *.sw?
 
 #API key
-src\context\KeyContext.jsx
+frontend\src\context\KeyContext.jsx
