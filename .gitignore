@@ -25,3 +25,6 @@ dist-ssr
 
 #API key
 frontend\src\context\KeyContext.jsx
+
+#env file
+.env

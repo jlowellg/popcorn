@@ -15,6 +15,8 @@ export const DataProvider = ({ children }) => {
   const [TVInfo, setTVInfo] = useState([]);
   const [genres, setGenres] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [watchlist, setWatchlist] = useState([]);
 
   return (
     <DataContext.Provider
@@ -41,6 +43,10 @@ export const DataProvider = ({ children }) => {
         setGenres,
         isLoading,
         setIsLoading,
+        isLoggedIn,
+        setIsLoggedIn,
+        watchlist,
+        setWatchlist,
       }}
     >
       {children}

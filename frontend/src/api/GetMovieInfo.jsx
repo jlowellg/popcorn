@@ -22,7 +22,6 @@ const GetMovieInfo = () => {
       try {
         const response = await axios.get(url, key);
         setMovieInfo(response.data);
-        console.log(response.data);
         setGenres(response.data.genres);
       } catch (err) {
         if (err.response) {
