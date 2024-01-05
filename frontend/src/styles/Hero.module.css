@@ -6,6 +6,10 @@
   src: url(../assets/fonts/Montserrat-VariableFont_wght.ttf);
 }
 
+.test {
+  border: 1px solid var(--gray-7);
+}
+
 .backdropContainer {
   background-size: cover;
   background-position: center;

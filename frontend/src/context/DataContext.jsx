@@ -17,6 +17,9 @@ export const DataProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [watchlist, setWatchlist] = useState([]);
+  const [inWatchlist, setInWatchlist] = useState();
+  const [reload, setReload] = useState(false);
+  const [ascending, setAscending] = useState(false);
 
   return (
     <DataContext.Provider
@@ -47,6 +50,12 @@ export const DataProvider = ({ children }) => {
         setIsLoggedIn,
         watchlist,
         setWatchlist,
+        inWatchlist,
+        setInWatchlist,
+        reload,
+        setReload,
+        ascending,
+        setAscending,
       }}
     >
       {children}

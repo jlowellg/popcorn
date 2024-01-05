@@ -1,33 +1,49 @@
 import React from "react";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import DataContext from "../context/DataContext";
 import HeroCSS from "../styles/Hero.module.css";
 import { Button } from "../components/ui/button";
 import axios from "axios";
+import { BookmarkIcon, BookmarkFilledIcon } from "@radix-ui/react-icons";
 
 const MovieInfo = () => {
-  const { movieInfo, genres, isLoggedIn } = useContext(DataContext);
-  const id = movieInfo.id;
-  const title = movieInfo.title;
-  const type = "Movie";
+  const { movieInfo, genres, isLoggedIn, inWatchlist, setInWatchlist } =
+    useContext(DataContext);
 
-  const formData = {
-    id: id,
-    title: title,
-    type: type,
+  const movieData = {
+    id: movieInfo.id,
+    title: movieInfo.title,
+    type: "Movie",
+    dateReleased: movieInfo.release_date,
+    posterPath: movieInfo.poster_path,
+    dateAdded: Date.now(),
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    console.log("clicked");
+  const itemId = movieInfo.id;
 
+  useEffect(() => {
+    const fetchIfExisting = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:5000/watchlist/check/${itemId}`
+        );
+        setInWatchlist(response.data.exists);
+      } catch (error) {
+        console.error("Error checking item:", error);
+      }
+    };
+
+    fetchIfExisting();
+  }, [itemId]);
+
+  const handleSave = async (event) => {
+    event.preventDefault();
+    setInWatchlist(true);
     try {
       const response = await axios.post(
         "http://localhost:5000/watchlist/add",
-        formData
+        movieData
       );
-      console.log(formData);
-      console.log(response.data);
     } catch (err) {
       if (err.response) {
         console.log(err.response.data);
@@ -38,6 +54,26 @@ const MovieInfo = () => {
       }
     }
   };
+
+  const handleUnsave = async (event) => {
+    event.preventDefault();
+    setInWatchlist(false);
+    try {
+      const response = await axios.get(
+        `http://localhost:5000/watchlist/unsave/${itemId}`
+      );
+      console.log(itemId);
+    } catch (err) {
+      if (err.response) {
+        console.log(err.response.data);
+        console.log(err.response.status);
+        console.log(err.response.headers);
+      } else {
+        console.log(`Error: ${err.message}`);
+      }
+    }
+  };
+
   return (
     <div
       style={{
@@ -79,7 +115,21 @@ const MovieInfo = () => {
 
             {isLoggedIn ? (
               <div>
-                <Button onClick={handleSubmit}>Add to Watchlist</Button>
+                {inWatchlist ? (
+                  <Button
+                    onClick={handleUnsave}
+                    variant="secondary"
+                    className={`${HeroCSS.test}`}
+                  >
+                    <BookmarkFilledIcon className="mr-2 h-4 w-4" />
+                    Remove from Watchlist
+                  </Button>
+                ) : (
+                  <Button onClick={handleSave}>
+                    <BookmarkIcon className="mr-2 h-4 w-4" />
+                    Add to Watchlist
+                  </Button>
+                )}
               </div>
             ) : null}
           </div>

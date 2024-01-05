@@ -20,7 +20,7 @@ const SelectCategory = () => {
   };
 
   return (
-    <Select value={category} onValueChange={handleChange}>
+    <Select onValueChange={handleChange}>
       <SelectTrigger className="w-[180px]">
         <SelectValue placeholder="All" />
       </SelectTrigger>
@@ -28,7 +28,7 @@ const SelectCategory = () => {
         <SelectGroup>
           <SelectItem value="multi">All</SelectItem>
           <SelectItem value="movie">Movies</SelectItem>
-          <SelectItem value="tv">TV Shows</SelectItem>
+          <SelectItem value="tv">TV Series</SelectItem>
         </SelectGroup>
       </SelectContent>
     </Select>
