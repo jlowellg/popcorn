@@ -10,9 +10,15 @@ import {
   SelectValue,
 } from "../ui/select";
 
-export function OrderBy() {
+const OrderBy = () => {
+  const { orderBy, setOrderBy } = useContext(DataContext);
+
+  const handleChange = (newValue) => {
+    setOrderBy(newValue);
+  };
+
   return (
-    <Select>
+    <Select onValueChange={handleChange}>
       <SelectTrigger className="w-[120px]">
         <SelectValue placeholder="Date Added" />
       </SelectTrigger>
@@ -22,6 +28,6 @@ export function OrderBy() {
       </SelectContent>
     </Select>
   );
-}
+};
 
 export default OrderBy;

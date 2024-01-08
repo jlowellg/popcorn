@@ -11,21 +11,27 @@ import {
   SelectValue,
 } from "../ui/select";
 
-export function FindBy() {
+const FindBy = () => {
+  const { findBy, setFindBy } = useContext(DataContext);
+
+  const handleChange = (newValue) => {
+    setFindBy(newValue);
+  };
+
   return (
-    <Select>
+    <Select onValueChange={handleChange}>
       <SelectTrigger className="w-[120px]">
         <SelectValue placeholder={<DividerHorizontalIcon />} />
       </SelectTrigger>
       <SelectContent>
-        <SelectItem value="none">None</SelectItem>
+        <SelectItem value="all">All</SelectItem>
         <SelectItem value="favorites">Favorites</SelectItem>
-        <SelectItem value="Completed">Completed</SelectItem>
-        <SelectItem value="In Progress">In Progress</SelectItem>
         <SelectItem value="To Watch">To Watch</SelectItem>
+        <SelectItem value="In Progress">In Progress</SelectItem>
+        <SelectItem value="Completed">Completed</SelectItem>
       </SelectContent>
     </Select>
   );
-}
+};
 
 export default FindBy;

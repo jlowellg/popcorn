@@ -11,19 +11,25 @@ import {
   SelectValue,
 } from "../ui/select";
 
-export function FilterBy() {
+const FilterBy = () => {
+  const { filterBy, setFilterBy } = useContext(DataContext);
+
+  const handleChange = (newValue) => {
+    setFilterBy(newValue);
+  };
+
   return (
-    <Select>
+    <Select onValueChange={handleChange}>
       <SelectTrigger className="w-[120px]">
         <SelectValue placeholder={<DividerHorizontalIcon />} />
       </SelectTrigger>
       <SelectContent>
         <SelectItem value="all">All</SelectItem>
-        <SelectItem value="movie">Movies</SelectItem>
-        <SelectItem value="tv">TV Series</SelectItem>
+        <SelectItem value="Movie">Movies</SelectItem>
+        <SelectItem value="TV Series">TV Series</SelectItem>
       </SelectContent>
     </Select>
   );
-}
+};
 
 export default FilterBy;

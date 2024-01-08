@@ -44,7 +44,12 @@ const GetWatchlist = () => {
 
   const handleAsc = (event) => {
     event.preventDefault();
-    setAscending(!ascending);
+    setAscending(true);
+  };
+
+  const handleDesc = (event) => {
+    event.preventDefault();
+    setAscending(false);
   };
 
   return (
@@ -65,7 +70,7 @@ const GetWatchlist = () => {
             <div className={`${WatchlistCSS.headerMenu}`}>
               <OrderBy />
               {ascending ? (
-                <Button onClick={handleAsc} variant="outline" size="icon">
+                <Button onClick={handleDesc} variant="outline" size="icon">
                   <ArrowUpIcon className="h-4 w-4" />
                 </Button>
               ) : (

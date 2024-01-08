@@ -20,6 +20,11 @@ export const DataProvider = ({ children }) => {
   const [inWatchlist, setInWatchlist] = useState();
   const [reload, setReload] = useState(false);
   const [ascending, setAscending] = useState(false);
+  const [filtered, setFiltered] = useState([]);
+  const [filterBy, setFilterBy] = useState("all");
+  const [findBy, setFindBy] = useState("all");
+  const [orderBy, setOrderBy] = useState("dateAdded");
+  const [sorted, setSorted] = useState([]);
 
   return (
     <DataContext.Provider
@@ -56,6 +61,16 @@ export const DataProvider = ({ children }) => {
         setReload,
         ascending,
         setAscending,
+        filtered,
+        setFiltered,
+        filterBy,
+        setFilterBy,
+        findBy,
+        setFindBy,
+        orderBy,
+        setOrderBy,
+        sorted,
+        setSorted,
       }}
     >
       {children}

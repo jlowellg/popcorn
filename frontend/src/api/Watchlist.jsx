@@ -1,5 +1,5 @@
 import React from "react";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import axios from "axios";
 import DataContext from "../context/DataContext";
 import { Link } from "react-router-dom";
@@ -17,7 +17,21 @@ import {
 import { Alert } from "../components/sub/UnsaveAlert";
 
 const Watchlist = () => {
-  const { watchlist, reload, setReload } = useContext(DataContext);
+  const {
+    watchlist,
+    setWatchlist,
+    reload,
+    setReload,
+    filtered,
+    setFiltered,
+    filterBy,
+    findBy,
+    orderBy,
+    sorted,
+    setSorted,
+    ascending,
+    setAscending,
+  } = useContext(DataContext);
 
   const handleFavorite = async (itemId) => {
     setReload(!reload);
@@ -53,9 +67,61 @@ const Watchlist = () => {
     }
   };
 
+  useEffect(() => {
+    const fetchFilter = async () => {
+      try {
+        const response = await watchlist.filter((item) => {
+          const typeCondition =
+            filterBy === "all" ? true : item.type === filterBy;
+          const statusCondition =
+            findBy === "all"
+              ? true
+              : findBy === "favorites"
+              ? item.favorite === true
+              : item.status === findBy;
+          return typeCondition && statusCondition;
+        });
+        setFiltered(response);
+      } catch (err) {
+        console.log(`Error: ${err.message}`);
+      }
+    };
+    fetchFilter();
+  }, [filterBy, findBy]);
+
+  useEffect(() => {
+    const fetchOrder = async () => {
+      try {
+        const response = await filtered.sort((a, b) => {
+          if (orderBy === "dateAdded") {
+            if (ascending === true) {
+              return new Date(b.dateAdded) - new Date(a.dateAdded);
+            } else {
+              return new Date(a.dateAdded) - new Date(b.dateAdded);
+            }
+          } else if (orderBy === "myRating") {
+            if (ascending === true) {
+              return b.myRating - a.myRating;
+            } else {
+              return a.myRating - b.myRating;
+            }
+          }
+        });
+        setSorted(response);
+      } catch (err) {
+        console.log(`Error: ${err.message}`);
+      }
+    };
+    fetchOrder();
+  }, [filtered, ascending, orderBy]);
+
+  useEffect(() => {
+    console.log(filterBy, findBy, orderBy, ascending);
+  }, [filterBy, findBy, orderBy, ascending]);
+
   return (
     <>
-      {watchlist.map((item) => (
+      {sorted.map((item) => (
         <div className={`${WatchlistCSS.resultsContainer}`} key={item.id}>
           <div className={`${WatchlistCSS.titleMenu}`}>
             {item.favorite ? (
