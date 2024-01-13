@@ -15,7 +15,7 @@ export const DataProvider = ({ children }) => {
   const [TVInfo, setTVInfo] = useState([]);
   const [genres, setGenres] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState();
   const [watchlist, setWatchlist] = useState([]);
   const [inWatchlist, setInWatchlist] = useState();
   const [reload, setReload] = useState(false);

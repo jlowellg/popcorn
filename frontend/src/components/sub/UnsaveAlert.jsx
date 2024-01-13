@@ -15,14 +15,16 @@ import { useContext } from "react";
 import DataContext from "../../context/DataContext";
 import axios from "axios";
 
-export function Alert(data) {
+export function Unsave(data) {
   const { reload, setReload } = useContext(DataContext);
+
+  const username = localStorage.getItem("username");
 
   const handleUnsave = async (itemId) => {
     setReload(!reload);
     try {
       const response = await axios.get(
-        `http://localhost:5000/watchlist/unsave/${itemId}`
+        `http://localhost:5000/watchlist/unsave/${username}/${itemId}`
       );
     } catch (err) {
       if (err.response) {

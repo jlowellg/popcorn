@@ -1,9 +1,23 @@
 @import "@radix-ui/colors/black-alpha.css";
-@import "@radix-ui/colors/red.css";
+@import "@radix-ui/colors/gray.css";
 
 @font-face {
   font-family: Jua;
   src: url("../assets/fonts/Jua-Regular.ttf");
+}
+
+.userNavItem {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  padding: 0.5rem 2rem;
+  background-color: var(--gray-2);
+}
+
+.userNavItem:hover {
+  background-color: var(--gray-4);
+  cursor: pointer;
 }
 
 .navContainer {

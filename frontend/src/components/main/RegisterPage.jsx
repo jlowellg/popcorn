@@ -1,44 +1,38 @@
 import React from "react";
-import Cookies from "universal-cookie";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import HeroCSS from "../../styles/Hero.module.css";
-import { Link } from "react-router-dom";
-import DataContext from "../../context/DataContext";
-import { useNavigate } from "react-router-dom";
 
-const LoginPage = () => {
-  const navigate = useNavigate();
-
+const RegisterPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const { setIsLoggedIn } = useContext(DataContext);
-
-  const cookies = new Cookies();
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    try {
-      const response = await axios.post("http://localhost:5000/user/login", {
-        username,
-        password,
-      });
-      const userInfo = response.data.userInfo;
-      cookies.set("userInfo", userInfo, { path: "/" });
-      setIsLoggedIn(userInfo);
-      localStorage.setItem("username", userInfo);
-      console.log("Login successful", response.data.accessToken);
-      navigate("/");
-    } catch (err) {
-      if (err.response) {
-        console.log(err.response.data);
-        console.log(err.response.status);
-        console.log(err.response.headers);
-      } else {
-        console.log(`Error: ${err.message}`);
+    if (!username || !password || !confirmPassword) {
+      console.log("You must fill up all fields");
+    }
+    if (password == confirmPassword) {
+      try {
+        const response = await axios.post(
+          "http://localhost:5000/user/register",
+          { username, password }
+        );
+        console.log(response.data);
+      } catch (err) {
+        if (err.response) {
+          console.log(err.response.data);
+          console.log(err.response.status);
+          console.log(err.response.headers);
+        } else {
+          console.log(`Error: ${err.message}`);
+        }
       }
+    } else {
+      console.log("Password did not match");
     }
   };
 
@@ -66,17 +60,21 @@ const LoginPage = () => {
               required
             />
           </div>
-          <Button onClick={handleSubmit}>Login</Button>
-          <div className={`${HeroCSS.mutedText}`}>
-            Don't have an account?
-            <Link to="/register">
-              <span className={`${HeroCSS.gray}`}> Register</span>
-            </Link>
+          <div className={`${HeroCSS.loginSubContainer}`}>
+            <label htmlFor="confirmPassword">Confirm Password</label>
+            <Input
+              id="confirmPassword"
+              placeholder="Confirm Password"
+              type="password"
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              required
+            />
           </div>
+          <Button onClick={handleSubmit}>Register</Button>
         </div>
       </form>
     </div>
   );
 };
 
-export default LoginPage;
+export default RegisterPage;

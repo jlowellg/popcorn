@@ -10,7 +10,10 @@ const TVInfo = () => {
   const { TVInfo, genres, isLoggedIn, inWatchlist, setInWatchlist } =
     useContext(DataContext);
 
+  const username = localStorage.getItem("username");
+
   const TVData = {
+    user: username,
     id: TVInfo.id,
     title: TVInfo.name,
     type: "TV Series",
@@ -25,7 +28,7 @@ const TVInfo = () => {
     const fetchIfExisting = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/watchlist/check/${itemId}`
+          `http://localhost:5000/watchlist/check/${username}/${itemId}`
         );
         setInWatchlist(response.data.exists);
       } catch (error) {
@@ -60,7 +63,7 @@ const TVInfo = () => {
     setInWatchlist(false);
     try {
       const response = await axios.get(
-        `http://localhost:5000/watchlist/unsave/${itemId}`
+        `http://localhost:5000/watchlist/unsave/${username}/${itemId}`
       );
       console.log(itemId);
     } catch (err) {
@@ -111,7 +114,7 @@ const TVInfo = () => {
               <div className={`${HeroCSS.gray}`}>{TVInfo.first_air_date}</div>
             </div>
 
-            {isLoggedIn ? (
+            {username ? (
               <div>
                 {inWatchlist ? (
                   <Button

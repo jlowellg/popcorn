@@ -10,7 +10,10 @@ const MovieInfo = () => {
   const { movieInfo, genres, isLoggedIn, inWatchlist, setInWatchlist } =
     useContext(DataContext);
 
+  const username = localStorage.getItem("username");
+
   const movieData = {
+    user: username,
     id: movieInfo.id,
     title: movieInfo.title,
     type: "Movie",
@@ -25,7 +28,7 @@ const MovieInfo = () => {
     const fetchIfExisting = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/watchlist/check/${itemId}`
+          `http://localhost:5000/watchlist/check/${username}/${itemId}`
         );
         setInWatchlist(response.data.exists);
       } catch (error) {
@@ -60,7 +63,7 @@ const MovieInfo = () => {
     setInWatchlist(false);
     try {
       const response = await axios.get(
-        `http://localhost:5000/watchlist/unsave/${itemId}`
+        `http://localhost:5000/watchlist/unsave/${username}/${itemId}`
       );
       console.log(itemId);
     } catch (err) {
@@ -113,7 +116,7 @@ const MovieInfo = () => {
               <div className={`${HeroCSS.gray}`}>{movieInfo.release_date}</div>
             </div>
 
-            {isLoggedIn ? (
+            {username ? (
               <div>
                 {inWatchlist ? (
                   <Button

@@ -3,9 +3,15 @@ const router = express.Router();
 
 const Watchlist = require("../../models/Watchlist");
 
+const verifyToken = require("../../middleware/verifyToken");
+//const verifyToken = require("../api/Users");
+
 router.post("/add", async (req, res) => {
   try {
-    const existingWatchlist = await Watchlist.findOne({ id: req.body.id });
+    const existingWatchlist = await Watchlist.findOne({
+      user: req.body.user,
+      id: req.body.id,
+    });
 
     if (existingWatchlist) {
       return res
@@ -14,6 +20,7 @@ router.post("/add", async (req, res) => {
     }
 
     const watchlist = new Watchlist({
+      user: req.body.user,
       id: req.body.id,
       title: req.body.title,
       type: req.body.type,
@@ -29,37 +36,43 @@ router.post("/add", async (req, res) => {
   }
 });
 
-router.get("/get", async (req, res) => {
+router.get("/get/:user", async (req, res) => {
   try {
-    const watchlist = await Watchlist.find();
+    const watchlist = await Watchlist.find({ user: req.params.user });
     res.status(200).json(watchlist);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
 
-router.get("/check/:itemId", async (req, res) => {
+router.get("/check/:user/:itemId", async (req, res) => {
   try {
-    const item = await Watchlist.findOne({ id: req.params.itemId });
+    const item = await Watchlist.findOne({
+      user: req.params.user,
+      id: req.params.itemId,
+    });
     res.json({ exists: !!item });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 });
 
-router.get("/unsave/:itemId", async (req, res) => {
+router.get("/unsave/:user/:itemId", async (req, res) => {
   try {
-    const item = await Watchlist.deleteOne({ id: req.params.itemId });
+    const item = await Watchlist.deleteOne({
+      user: req.params.user,
+      id: req.params.itemId,
+    });
     res.status(200).json({ message: "Unsave successful." });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 });
 
-router.get("/favorite/:itemId", async (req, res) => {
+router.get("/favorite/:user/:itemId", async (req, res) => {
   try {
     const item = await Watchlist.findOneAndUpdate(
-      { id: req.params.itemId },
+      { user: req.params.user, id: req.params.itemId },
       { favorite: true }
     );
     res.status(200).json({ message: "Favorite successful." });
@@ -68,10 +81,10 @@ router.get("/favorite/:itemId", async (req, res) => {
   }
 });
 
-router.get("/unfavorite/:itemId", async (req, res) => {
+router.get("/unfavorite/:user/:itemId", async (req, res) => {
   try {
     const item = await Watchlist.findOneAndUpdate(
-      { id: req.params.itemId },
+      { user: req.params.user, id: req.params.itemId },
       { favorite: false }
     );
     res.status(200).json({ message: "Unfavorite successful." });

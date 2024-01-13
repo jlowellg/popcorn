@@ -2,10 +2,13 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
+const verifyToken = require("./middleware/verifyToken");
 
 const app = express();
-app.use(cors());
 app.use(express.json());
+app.use(cors());
+app.use(cookieParser());
 
 const PORT = 5000;
 
@@ -28,4 +31,6 @@ const connectDB = async () => {
 
 connectDB();
 
+app.use("/user", require("./routes/api/Users"));
+app.use(verifyToken);
 app.use("/watchlist", require("./routes/api/Watchlists"));

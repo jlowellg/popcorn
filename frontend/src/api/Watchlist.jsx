@@ -1,5 +1,5 @@
 import React from "react";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import DataContext from "../context/DataContext";
 import { Link } from "react-router-dom";
@@ -14,7 +14,8 @@ import {
   HeartFilledIcon,
 } from "@radix-ui/react-icons";
 
-import { Alert } from "../components/sub/UnsaveAlert";
+import { Unsave } from "../components/sub/UnsaveAlert";
+import { EditWatchlistItem } from "../components/sub/EditWatchlistItem";
 
 const Watchlist = () => {
   const {
@@ -31,13 +32,18 @@ const Watchlist = () => {
     setSorted,
     ascending,
     setAscending,
+    isLoading,
   } = useContext(DataContext);
+
+  const username = localStorage.getItem("username");
+
+  const [fetchingFiltered, SetFetchingFiltered] = useState(true);
 
   const handleFavorite = async (itemId) => {
     setReload(!reload);
     try {
       const response = await axios.get(
-        `http://localhost:5000/watchlist/favorite/${itemId}`
+        `http://localhost:5000/watchlist/favorite/${username}/${itemId}`
       );
     } catch (err) {
       if (err.response) {
@@ -54,7 +60,7 @@ const Watchlist = () => {
     setReload(!reload);
     try {
       const response = await axios.get(
-        `http://localhost:5000/watchlist/unfavorite/${itemId}`
+        `http://localhost:5000/watchlist/unfavorite/${username}/${itemId}`
       );
     } catch (err) {
       if (err.response) {
@@ -119,8 +125,18 @@ const Watchlist = () => {
     console.log(filterBy, findBy, orderBy, ascending);
   }, [filterBy, findBy, orderBy, ascending]);
 
+  useEffect(() => {
+    SetFetchingFiltered(false);
+    console.log("use");
+  }, [filterBy, findBy]);
+
   return (
     <>
+      {fetchingFiltered ? null : filtered.length ? null : (
+        <div className={`${WatchlistCSS.watchlistStatus}`}>
+          No items to show.
+        </div>
+      )}
       {sorted.map((item) => (
         <div className={`${WatchlistCSS.resultsContainer}`} key={item.id}>
           <div className={`${WatchlistCSS.titleMenu}`}>
@@ -134,10 +150,8 @@ const Watchlist = () => {
               </Button>
             )}
 
-            <Button variant="ghost">
-              <Pencil2Icon className="h-6 w-6" />
-            </Button>
-            <Alert id={item.id} title={item.title} />
+            <EditWatchlistItem />
+            <Unsave id={item.id} title={item.title} />
           </div>
 
           <div className={`${WatchlistCSS.posterContainer}`}>

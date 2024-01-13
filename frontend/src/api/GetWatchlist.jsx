@@ -19,13 +19,18 @@ const GetWatchlist = () => {
     reload,
     ascending,
     setAscending,
+    sorted,
   } = useContext(DataContext);
+
+  const username = localStorage.getItem("username");
 
   useEffect(() => {
     const fetchWatchlist = async () => {
       setIsLoading(true);
       try {
-        const response = await axios.get("http://localhost:5000/watchlist/get");
+        const response = await axios.get(
+          `http://localhost:5000/watchlist/get/${username}`
+        );
         setWatchlist(response.data);
       } catch (err) {
         if (err.response) {
@@ -90,7 +95,7 @@ const GetWatchlist = () => {
         <Watchlist />
       ) : (
         <div className={`${WatchlistCSS.watchlistStatus}`}>
-          No available items.
+          No items to show.
         </div>
       )}
     </div>

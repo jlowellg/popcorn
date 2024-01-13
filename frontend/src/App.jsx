@@ -11,6 +11,7 @@ import GetMovieInfo from "./api/GetMovieInfo";
 import GetTVInfo from "./api/GetTVInfo";
 import LoginPage from "./components/main/LoginPage";
 import GetWatchlist from "./api/GetWatchlist";
+import RegisterPage from "./components/main/RegisterPage";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
               <Route path="/movie/:id" element={<GetMovieInfo />} />
               <Route path="/tv/:id" element={<GetTVInfo />} />
               <Route path="/login" element={<LoginPage />} />
+              <Route path="/register" element={<RegisterPage />} />
               <Route path="/watchlist" element={<GetWatchlist />} />
             </Routes>
           </KeyProvider>
