@@ -93,4 +93,22 @@ router.get("/unfavorite/:user/:itemId", async (req, res) => {
   }
 });
 
+router.post("/edit/:user/:itemId", async (req, res) => {
+  try {
+    const item = await Watchlist.findOneAndUpdate(
+      { user: req.params.user, id: req.params.itemId },
+      {
+        status: req.body.status,
+        currentEpisode: req.body.currentEp,
+        myRating: req.body.myRating,
+
+        dateFinished: req.body.dateFinished,
+      }
+    );
+    res.status(200).json({ message: "Favorite successful." });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 module.exports = router;

@@ -127,7 +127,6 @@ const Watchlist = () => {
 
   useEffect(() => {
     SetFetchingFiltered(false);
-    console.log("use");
   }, [filterBy, findBy]);
 
   return (
@@ -150,7 +149,7 @@ const Watchlist = () => {
               </Button>
             )}
 
-            <EditWatchlistItem />
+            <EditWatchlistItem id={item.id} title={item.title} />
             <Unsave id={item.id} title={item.title} />
           </div>
 
@@ -194,7 +193,11 @@ const Watchlist = () => {
 
               <div className={`${WatchlistCSS.boxContainer}`}>
                 <div>Date Finished:</div>
-                <div>{item.dateFinished ? item.dateFinished : "-"}</div>
+                <div>
+                  {item.dateFinished
+                    ? format(new Date(item.dateFinished), "yyyy-MM-dd")
+                    : "-"}
+                </div>
               </div>
 
               <div className={`${WatchlistCSS.boxContainer}`}>

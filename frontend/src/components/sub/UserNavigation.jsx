@@ -29,6 +29,7 @@ const UserNavigation = () => {
       localStorage.removeItem("username");
       console.log("Logout successful");
       navigate("/");
+      location.reload();
     } catch (err) {
       if (err.response) {
         console.log(err.response.data);

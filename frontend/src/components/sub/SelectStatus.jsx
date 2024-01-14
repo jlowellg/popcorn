@@ -13,10 +13,10 @@ import {
 } from "../ui/select";
 
 const SelectStatus = () => {
-  const { category, setCategory } = useContext(DataContext);
+  const { itemStatus, setItemStatus } = useContext(DataContext);
 
   const handleChange = (newValue) => {
-    setCategory(newValue);
+    setItemStatus(newValue);
   };
 
   return (
@@ -26,9 +26,9 @@ const SelectStatus = () => {
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
-          <SelectItem value="toWatch">To Watch</SelectItem>
-          <SelectItem value="inProgress">In Progress</SelectItem>
-          <SelectItem value="completed">Completed</SelectItem>
+          <SelectItem value="To Watch">To Watch</SelectItem>
+          <SelectItem value="In Progress">In Progress</SelectItem>
+          <SelectItem value="Completed">Completed</SelectItem>
         </SelectGroup>
       </SelectContent>
     </Select>

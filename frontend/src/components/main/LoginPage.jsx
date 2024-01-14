@@ -8,13 +8,15 @@ import HeroCSS from "../../styles/Hero.module.css";
 import { Link } from "react-router-dom";
 import DataContext from "../../context/DataContext";
 import { useNavigate } from "react-router-dom";
+import { AlertMessage } from "../sub/AlertMessage";
 
 const LoginPage = () => {
   const navigate = useNavigate();
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const { setIsLoggedIn } = useContext(DataContext);
+  const { setIsLoggedIn, alertMessage, setAlertMessage } =
+    useContext(DataContext);
 
   const cookies = new Cookies();
 
@@ -31,11 +33,13 @@ const LoginPage = () => {
       localStorage.setItem("username", userInfo);
       console.log("Login successful", response.data.accessToken);
       navigate("/");
+      location.reload();
     } catch (err) {
       if (err.response) {
         console.log(err.response.data);
         console.log(err.response.status);
         console.log(err.response.headers);
+        setAlertMessage(err.response.data.message);
       } else {
         console.log(`Error: ${err.message}`);
       }
@@ -43,39 +47,42 @@ const LoginPage = () => {
   };
 
   return (
-    <div className={`${HeroCSS.loginContainer}`}>
-      <form>
-        <div className={`${HeroCSS.loginCard}`}>
-          <div className={`${HeroCSS.loginSubContainer}`}>
-            <label htmlFor="username">Username</label>
-            <Input
-              id="username"
-              placeholder="Username"
-              autoComplete="off"
-              onChange={(e) => setUsername(e.target.value)}
-              required
-            />
+    <>
+      {alertMessage ? <AlertMessage /> : null}
+      <div className={`${HeroCSS.loginContainer}`}>
+        <form>
+          <div className={`${HeroCSS.loginCard}`}>
+            <div className={`${HeroCSS.loginSubContainer}`}>
+              <label htmlFor="username">Username</label>
+              <Input
+                id="username"
+                placeholder="Username"
+                autoComplete="off"
+                onChange={(e) => setUsername(e.target.value)}
+                required
+              />
+            </div>
+            <div className={`${HeroCSS.loginSubContainer}`}>
+              <label htmlFor="password">Password</label>
+              <Input
+                id="password"
+                placeholder="Password"
+                type="password"
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
+            <Button onClick={handleSubmit}>Login</Button>
+            <div className={`${HeroCSS.mutedText}`}>
+              Don't have an account?
+              <Link to="/register">
+                <span className={`${HeroCSS.gray}`}> Register</span>
+              </Link>
+            </div>
           </div>
-          <div className={`${HeroCSS.loginSubContainer}`}>
-            <label htmlFor="password">Password</label>
-            <Input
-              id="password"
-              placeholder="Password"
-              type="password"
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </div>
-          <Button onClick={handleSubmit}>Login</Button>
-          <div className={`${HeroCSS.mutedText}`}>
-            Don't have an account?
-            <Link to="/register">
-              <span className={`${HeroCSS.gray}`}> Register</span>
-            </Link>
-          </div>
-        </div>
-      </form>
-    </div>
+        </form>
+      </div>
+    </>
   );
 };
 

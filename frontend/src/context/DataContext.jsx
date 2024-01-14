@@ -25,6 +25,11 @@ export const DataProvider = ({ children }) => {
   const [findBy, setFindBy] = useState("all");
   const [orderBy, setOrderBy] = useState("dateAdded");
   const [sorted, setSorted] = useState([]);
+  const [itemStatus, setItemStatus] = useState();
+  const [itemCurrentEp, setItemCurrentEp] = useState();
+  const [itemMyRating, setItemMyRating] = useState();
+  const [itemDateFinished, setItemDateFinished] = useState();
+  const [alertMessage, setAlertMessage] = useState();
 
   return (
     <DataContext.Provider
@@ -71,6 +76,16 @@ export const DataProvider = ({ children }) => {
         setOrderBy,
         sorted,
         setSorted,
+        itemStatus,
+        setItemStatus,
+        itemCurrentEp,
+        setItemCurrentEp,
+        itemMyRating,
+        setItemMyRating,
+        itemDateFinished,
+        setItemDateFinished,
+        alertMessage,
+        setAlertMessage,
       }}
     >
       {children}

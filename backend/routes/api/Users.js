@@ -9,8 +9,24 @@ const cookies = require("../../middleware/cookies");
 
 router.post("/register", async (req, res) => {
   try {
-    const { username, password } = req.body;
+    const { username, password, confirmPassword } = req.body;
     const existingUser = await User.findOne({ username });
+
+    if (!username) {
+      return res.status(401).json({ message: "Please input username!" });
+    }
+
+    if (!password) {
+      return res.status(401).json({ message: "Please input password!" });
+    }
+
+    if (!confirmPassword) {
+      return res.status(401).json({ message: "Please confirm your password!" });
+    }
+
+    if (password !== confirmPassword) {
+      return res.status(401).json({ message: "Password did not match!" });
+    }
 
     if (existingUser) {
       return res.status(400).json({ message: "Username already exists!" });
@@ -29,6 +45,15 @@ router.post("/register", async (req, res) => {
 router.post("/login", async (req, res) => {
   try {
     const { username, password } = req.body;
+
+    if (!username) {
+      return res.status(401).json({ message: "Please input username!" });
+    }
+
+    if (!password) {
+      return res.status(401).json({ message: "Please input password!" });
+    }
+
     const user = await User.findOne({ username });
 
     if (!user) {

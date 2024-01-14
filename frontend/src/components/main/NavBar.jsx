@@ -26,9 +26,16 @@ const NavBar = () => {
         </div>
         <div className={`${NavBarCSS.menu} ${NavBarCSS.navChild}`}>
           <Link reloadDocument to="/">
-            Home{" "}
-          </Link>{" "}
-          |{username ? <UserNavigation /> : <Link to="/login">Sign in</Link>}
+            Home
+          </Link>
+          |
+          {username ? (
+            <UserNavigation />
+          ) : (
+            <Link reloadDocument to="/login">
+              Sign in
+            </Link>
+          )}
         </div>
       </div>
     </nav>
