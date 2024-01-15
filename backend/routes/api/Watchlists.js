@@ -75,7 +75,7 @@ router.get("/favorite/:user/:itemId", async (req, res) => {
       { user: req.params.user, id: req.params.itemId },
       { favorite: true }
     );
-    res.status(200).json({ message: "Favorite successful." });
+    res.status(200).json({ message: item.title });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -87,7 +87,7 @@ router.get("/unfavorite/:user/:itemId", async (req, res) => {
       { user: req.params.user, id: req.params.itemId },
       { favorite: false }
     );
-    res.status(200).json({ message: "Unfavorite successful." });
+    res.status(200).json({ message: item.title });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -105,7 +105,7 @@ router.post("/edit/:user/:itemId", async (req, res) => {
         dateFinished: req.body.dateFinished,
       }
     );
-    res.status(200).json({ message: "Favorite successful." });
+    res.status(200).json({ message: `${item.title} successfully edited.` });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

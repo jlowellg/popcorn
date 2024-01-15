@@ -14,11 +14,13 @@ import { BookmarkFilledIcon } from "@radix-ui/react-icons";
 import { useContext } from "react";
 import DataContext from "../../context/DataContext";
 import axios from "axios";
+import { useToast } from "../ui/use-toast";
 
 export function Unsave(data) {
   const { reload, setReload } = useContext(DataContext);
 
   const username = localStorage.getItem("username");
+  const { toast } = useToast();
 
   const handleUnsave = async (itemId) => {
     setReload(!reload);
@@ -26,6 +28,9 @@ export function Unsave(data) {
       const response = await axios.get(
         `http://localhost:5000/watchlist/unsave/${username}/${itemId}`
       );
+      toast({
+        title: `${data.title} removed.`,
+      });
     } catch (err) {
       if (err.response) {
         console.log(err.response.data);

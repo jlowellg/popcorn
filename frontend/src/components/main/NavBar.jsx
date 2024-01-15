@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import UserNavigation from "../sub/UserNavigation";
 
 const NavBar = () => {
+  const { isLoggedIn } = useContext(DataContext);
   const username = localStorage.getItem("username");
 
   return (
@@ -29,7 +30,7 @@ const NavBar = () => {
             Home
           </Link>
           |
-          {username ? (
+          {isLoggedIn || username ? (
             <UserNavigation />
           ) : (
             <Link reloadDocument to="/login">

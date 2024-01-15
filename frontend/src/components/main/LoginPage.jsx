@@ -9,19 +9,22 @@ import { Link } from "react-router-dom";
 import DataContext from "../../context/DataContext";
 import { useNavigate } from "react-router-dom";
 import { AlertMessage } from "../sub/AlertMessage";
+import { useToast } from "../ui/use-toast";
 
 const LoginPage = () => {
   const navigate = useNavigate();
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const { setIsLoggedIn, alertMessage, setAlertMessage } =
+  const { setIsLoggedIn, alertMessage, setAlertMessage, setUserInfo } =
     useContext(DataContext);
 
   const cookies = new Cookies();
+  const { toast } = useToast();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
     try {
       const response = await axios.post("http://localhost:5000/user/login", {
         username,
@@ -31,9 +34,10 @@ const LoginPage = () => {
       cookies.set("userInfo", userInfo, { path: "/" });
       setIsLoggedIn(userInfo);
       localStorage.setItem("username", userInfo);
-      console.log("Login successful", response.data.accessToken);
       navigate("/");
-      location.reload();
+      toast({
+        title: "Login successful.",
+      });
     } catch (err) {
       if (err.response) {
         console.log(err.response.data);
@@ -75,7 +79,7 @@ const LoginPage = () => {
             <Button onClick={handleSubmit}>Login</Button>
             <div className={`${HeroCSS.mutedText}`}>
               Don't have an account?
-              <Link to="/register">
+              <Link reloadDocument to="/register">
                 <span className={`${HeroCSS.gray}`}> Register</span>
               </Link>
             </div>

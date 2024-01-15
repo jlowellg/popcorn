@@ -7,9 +7,11 @@ import HeroCSS from "../../styles/Hero.module.css";
 import DataContext from "../../context/DataContext";
 import { AlertMessage } from "../sub/AlertMessage";
 import { useNavigate } from "react-router-dom";
+import { useToast } from "../ui/use-toast";
 
 const RegisterPage = () => {
   const navigate = useNavigate();
+  const { toast } = useToast();
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -27,6 +29,10 @@ const RegisterPage = () => {
         confirmPassword,
       });
       navigate("/login");
+      setAlertMessage(null);
+      toast({
+        title: "Registration successful.",
+      });
     } catch (err) {
       if (err.response) {
         console.log(err.response.data);

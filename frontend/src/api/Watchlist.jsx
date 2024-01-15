@@ -16,6 +16,7 @@ import {
 
 import { Unsave } from "../components/sub/UnsaveAlert";
 import { EditWatchlistItem } from "../components/sub/EditWatchlistItem";
+import { useToast } from "../components/ui/use-toast";
 
 const Watchlist = () => {
   const {
@@ -36,6 +37,7 @@ const Watchlist = () => {
   } = useContext(DataContext);
 
   const username = localStorage.getItem("username");
+  const { toast } = useToast();
 
   const [fetchingFiltered, SetFetchingFiltered] = useState(true);
 
@@ -45,6 +47,9 @@ const Watchlist = () => {
       const response = await axios.get(
         `http://localhost:5000/watchlist/favorite/${username}/${itemId}`
       );
+      toast({
+        title: `${response.data.message} added to favorites.`,
+      });
     } catch (err) {
       if (err.response) {
         console.log(err.response.data);
@@ -62,6 +67,9 @@ const Watchlist = () => {
       const response = await axios.get(
         `http://localhost:5000/watchlist/unfavorite/${username}/${itemId}`
       );
+      toast({
+        title: `${response.data.message} removed from favorites.`,
+      });
     } catch (err) {
       if (err.response) {
         console.log(err.response.data);

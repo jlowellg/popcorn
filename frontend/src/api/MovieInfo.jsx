@@ -5,12 +5,14 @@ import HeroCSS from "../styles/Hero.module.css";
 import { Button } from "../components/ui/button";
 import axios from "axios";
 import { BookmarkIcon, BookmarkFilledIcon } from "@radix-ui/react-icons";
+import { useToast } from "../components/ui/use-toast";
 
 const MovieInfo = () => {
   const { movieInfo, genres, isLoggedIn, inWatchlist, setInWatchlist } =
     useContext(DataContext);
 
   const username = localStorage.getItem("username");
+  const { toast } = useToast();
 
   const movieData = {
     user: username,
@@ -47,6 +49,9 @@ const MovieInfo = () => {
         "http://localhost:5000/watchlist/add",
         movieData
       );
+      toast({
+        title: `${movieInfo.title} added.`,
+      });
     } catch (err) {
       if (err.response) {
         console.log(err.response.data);
@@ -65,7 +70,9 @@ const MovieInfo = () => {
       const response = await axios.get(
         `http://localhost:5000/watchlist/unsave/${username}/${itemId}`
       );
-      console.log(itemId);
+      toast({
+        title: `${movieInfo.title} removed.`,
+      });
     } catch (err) {
       if (err.response) {
         console.log(err.response.data);

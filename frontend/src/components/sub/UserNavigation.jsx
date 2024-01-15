@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import NavBarCSS from "../../styles/NavBar.module.css";
 import { Button } from "../ui/button";
 import { Link } from "react-router-dom";
+import DataContext from "../../context/DataContext";
+import { useToast } from "../ui/use-toast";
 
 import {
   NavigationMenu,
@@ -19,8 +21,10 @@ import {
 
 const UserNavigation = () => {
   const navigate = useNavigate();
-
+  const { setIsLoggedIn } = useContext(DataContext);
   const username = localStorage.getItem("username");
+
+  const { toast } = useToast();
 
   const handleLogout = async (event) => {
     event.preventDefault();
@@ -29,7 +33,10 @@ const UserNavigation = () => {
       localStorage.removeItem("username");
       console.log("Logout successful");
       navigate("/");
-      location.reload();
+      setIsLoggedIn(null);
+      toast({
+        title: "Logout successful",
+      });
     } catch (err) {
       if (err.response) {
         console.log(err.response.data);

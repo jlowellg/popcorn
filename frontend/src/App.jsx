@@ -12,6 +12,7 @@ import GetTVInfo from "./api/GetTVInfo";
 import LoginPage from "./components/main/LoginPage";
 import GetWatchlist from "./api/GetWatchlist";
 import RegisterPage from "./components/main/RegisterPage";
+import { Toaster } from "./components/ui/toaster";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           </KeyProvider>
           <Footer />
         </DataProvider>
+        <Toaster />
       </div>
     </BrowserRouter>
   );

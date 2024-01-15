@@ -15,6 +15,7 @@ import SelectStatus from "./SelectStatus";
 import { useContext, useEffect } from "react";
 import DataContext from "../../context/DataContext";
 import axios from "axios";
+import { useToast } from "../ui/use-toast";
 
 export function EditWatchlistItem(data) {
   const {
@@ -32,6 +33,7 @@ export function EditWatchlistItem(data) {
 
   const username = localStorage.getItem("username");
   const itemId = data.id;
+  const { toast } = useToast();
 
   useEffect(() => {
     if (itemStatus === "Completed") {
@@ -67,6 +69,9 @@ export function EditWatchlistItem(data) {
         `http://localhost:5000/watchlist/edit/${username}/${itemId}`,
         itemData
       );
+      toast({
+        title: response.data.message,
+      });
     } catch (err) {
       if (err.response) {
         console.log(err.response.data);
