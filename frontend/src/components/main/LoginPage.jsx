@@ -8,7 +8,6 @@ import HeroCSS from "../../styles/Hero.module.css";
 import { Link } from "react-router-dom";
 import DataContext from "../../context/DataContext";
 import { useNavigate } from "react-router-dom";
-import { AlertMessage } from "../sub/AlertMessage";
 import { useToast } from "../ui/use-toast";
 
 const LoginPage = () => {

@@ -15,6 +15,7 @@ import SelectStatus from "./SelectStatus";
 import { useContext, useEffect } from "react";
 import DataContext from "../../context/DataContext";
 import axios from "axios";
+import { AlertMessage } from "./AlertMessage";
 import { useToast } from "../ui/use-toast";
 
 export function EditWatchlistItem(data) {
@@ -29,6 +30,8 @@ export function EditWatchlistItem(data) {
     setReload,
     itemDateFinished,
     setItemDateFinished,
+    alertMessage,
+    setAlertMessage,
   } = useContext(DataContext);
 
   const username = localStorage.getItem("username");
@@ -36,10 +39,18 @@ export function EditWatchlistItem(data) {
   const { toast } = useToast();
 
   useEffect(() => {
+    setItemStatus();
+    setItemCurrentEp();
+    setItemMyRating();
+    setItemDateFinished();
+  }, []);
+
+  useEffect(() => {
     if (itemStatus === "Completed") {
       setItemDateFinished(Date.now());
     } else if (itemStatus && itemStatus !== "Completed") {
       setItemDateFinished(null);
+      setItemMyRating();
     }
   }, [itemStatus]);
 
@@ -77,6 +88,7 @@ export function EditWatchlistItem(data) {
         console.log(err.response.data);
         console.log(err.response.status);
         console.log(err.response.headers);
+        setAlertMessage(err.response.data.message);
       } else {
         console.log(`Error: ${err.message}`);
       }

@@ -9,6 +9,7 @@ import OrderBy from "../components/sub/OrderBy";
 import FindBy from "../components/sub/FindBy";
 import { Button } from "../components/ui/button";
 import { ArrowUpIcon, ArrowDownIcon } from "@radix-ui/react-icons";
+import { AlertMessage } from "../components/sub/AlertMessage";
 
 const GetWatchlist = () => {
   const {
@@ -20,6 +21,7 @@ const GetWatchlist = () => {
     ascending,
     setAscending,
     sorted,
+    alertMessage,
   } = useContext(DataContext);
 
   const username = localStorage.getItem("username");
@@ -58,47 +60,50 @@ const GetWatchlist = () => {
   };
 
   return (
-    <div className={`${WatchlistCSS.mainContainer}`}>
-      <div className={`${WatchlistCSS.header}`}>
-        <div className={`${WatchlistCSS.headerLabel}`}>Watchlist</div>
-        <div className={`${WatchlistCSS.headerMenu}`}>
-          <div>
-            <label>Filter by:</label>
-            <FilterBy />
-          </div>
-          <div>
-            <label>Find by:</label>
-            <FindBy />
-          </div>
-          <div>
-            <label>Order by:</label>
-            <div className={`${WatchlistCSS.headerMenu}`}>
-              <OrderBy />
-              {ascending ? (
-                <Button onClick={handleDesc} variant="outline" size="icon">
-                  <ArrowUpIcon className="h-4 w-4" />
-                </Button>
-              ) : (
-                <Button onClick={handleAsc} variant="outline" size="icon">
-                  <ArrowDownIcon className="h-4 w-4" />
-                </Button>
-              )}
+    <>
+      {alertMessage ? <AlertMessage /> : null}
+      <div className={`${WatchlistCSS.mainContainer}`}>
+        <div className={`${WatchlistCSS.header}`}>
+          <div className={`${WatchlistCSS.headerLabel}`}>Watchlist</div>
+          <div className={`${WatchlistCSS.headerMenu}`}>
+            <div>
+              <label>Filter by:</label>
+              <FilterBy />
+            </div>
+            <div>
+              <label>Find by:</label>
+              <FindBy />
+            </div>
+            <div>
+              <label>Order by:</label>
+              <div className={`${WatchlistCSS.headerMenu}`}>
+                <OrderBy />
+                {ascending ? (
+                  <Button onClick={handleDesc} variant="outline" size="icon">
+                    <ArrowUpIcon className="h-4 w-4" />
+                  </Button>
+                ) : (
+                  <Button onClick={handleAsc} variant="outline" size="icon">
+                    <ArrowDownIcon className="h-4 w-4" />
+                  </Button>
+                )}
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <hr />
+        <hr />
 
-      {isLoading ? (
-        <div className={`${WatchlistCSS.watchlistStatus}`}>Loading...</div>
-      ) : watchlist.length ? (
-        <Watchlist />
-      ) : (
-        <div className={`${WatchlistCSS.watchlistStatus}`}>
-          No items to show.
-        </div>
-      )}
-    </div>
+        {isLoading ? (
+          <div className={`${WatchlistCSS.watchlistStatus}`}>Loading...</div>
+        ) : watchlist.length ? (
+          <Watchlist />
+        ) : (
+          <div className={`${WatchlistCSS.watchlistStatus}`}>
+            No items to show.
+          </div>
+        )}
+      </div>
+    </>
   );
 };
 

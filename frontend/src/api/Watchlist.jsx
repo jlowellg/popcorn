@@ -156,7 +156,6 @@ const Watchlist = () => {
                 <HeartIcon className="h-6 w-6" />
               </Button>
             )}
-
             <EditWatchlistItem id={item.id} title={item.title} />
             <Unsave id={item.id} title={item.title} />
           </div>

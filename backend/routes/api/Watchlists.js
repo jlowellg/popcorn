@@ -94,6 +94,18 @@ router.get("/unfavorite/:user/:itemId", async (req, res) => {
 });
 
 router.post("/edit/:user/:itemId", async (req, res) => {
+  if (req.body.myRating) {
+    if (req.body.myRating < 1 || req.body.myRating > 10) {
+      return res.status(401).json({ message: "Rating must be 1 to 10." });
+    }
+  }
+
+  if (req.body.currentEp) {
+    if (req.body.currentEp < 1) {
+      return res.status(401).json({ message: "Episode must be positive." });
+    }
+  }
+
   try {
     const item = await Watchlist.findOneAndUpdate(
       { user: req.params.user, id: req.params.itemId },
