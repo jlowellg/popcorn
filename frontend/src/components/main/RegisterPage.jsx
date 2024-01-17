@@ -45,6 +45,10 @@ const RegisterPage = () => {
     }
   };
 
+  useEffect(() => {
+    document.title = "Register";
+  }, []);
+
   return (
     <>
       {alertMessage ? <AlertMessage /> : null}

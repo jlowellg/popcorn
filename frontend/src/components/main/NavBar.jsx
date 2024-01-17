@@ -17,8 +17,14 @@ const NavBar = () => {
   return (
     <nav className={NavBarCSS.navContainer}>
       <div className={NavBarCSS.navBar}>
-        <div className={`${NavBarCSS.title} ${NavBarCSS.navChild}`}>
-          <Link reloadDocument to="/">
+        <div
+          className={`${NavBarCSS.title} ${NavBarCSS.navChild} ${NavBarCSS.lineContainer}`}
+        >
+          <Link reloadDocument to="/" className={`${NavBarCSS.lineContainer}`}>
+            <img
+              src="\public\images\PopcornLogo.png"
+              className={`${NavBarCSS.popcorn}`}
+            />
             Popcorn
           </Link>
         </div>

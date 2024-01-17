@@ -6,6 +6,17 @@
   src: url("../assets/fonts/Jua-Regular.ttf");
 }
 
+.popcorn {
+  max-width: 35px;
+  max-height: 35px;
+  margin-bottom: 7px;
+}
+
+.lineContainer {
+  align-items: center;
+  display: flex;
+}
+
 .userNavItem {
   display: flex;
   flex-direction: column;

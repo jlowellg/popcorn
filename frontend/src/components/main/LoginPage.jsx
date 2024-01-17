@@ -49,6 +49,10 @@ const LoginPage = () => {
     }
   };
 
+  useEffect(() => {
+    document.title = "Login";
+  }, []);
+
   return (
     <>
       {alertMessage ? <AlertMessage /> : null}

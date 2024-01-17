@@ -59,6 +59,10 @@ const GetWatchlist = () => {
     setAscending(false);
   };
 
+  useEffect(() => {
+    document.title = "Watchlist";
+  }, []);
+
   return (
     <>
       {alertMessage ? <AlertMessage /> : null}
