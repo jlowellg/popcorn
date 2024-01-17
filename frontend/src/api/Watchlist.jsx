@@ -168,8 +168,15 @@ const Watchlist = () => {
           </div>
 
           <div className={`${WatchlistCSS.detailsContainer}`}>
-            <div className={`${WatchlistCSS.title} ${WatchlistCSS.red}`}>
-              {item.title}
+            <div className={`${WatchlistCSS.titleContainer}`}>
+              <div className={`${WatchlistCSS.title} ${WatchlistCSS.red}`}>
+                {item.title}
+              </div>
+              {item.myRating && item.status === "Completed" ? (
+                <div className={`${WatchlistCSS.itemRating}`}>
+                  {item.myRating}
+                </div>
+              ) : null}
             </div>
 
             <div className={`${WatchlistCSS.description} ${WatchlistCSS.bold}`}>
@@ -183,39 +190,46 @@ const Watchlist = () => {
             <div
               className={`${WatchlistCSS.lineContainer} ${WatchlistCSS.smallText}`}
             >
-              <div className={`${WatchlistCSS.boxContainer}`}>
-                <div>Date Added:</div>
-                <div>{format(new Date(item.dateAdded), "yyyy-MM-dd")}</div>
+              <div className={`${WatchlistCSS.outlineBox}`}>
+                Date Added:{" "}
+                <span className={`${WatchlistCSS.red}`}>
+                  {format(new Date(item.dateAdded), "yyyy-MM-dd")}
+                </span>
               </div>
-
-              <div className={`${WatchlistCSS.boxContainer}`}>
-                <div>Status:</div>
-                <div>{item.status}</div>
-              </div>
-
-              <div className={`${WatchlistCSS.boxContainer}`}>
-                <div>Current Episode:</div>
-                <div>{item.currentEpisode ? item.currentEpisode : "-"}</div>
-              </div>
-
-              <div className={`${WatchlistCSS.boxContainer}`}>
-                <div>Date Finished:</div>
-                <div>
-                  {item.dateFinished
-                    ? format(new Date(item.dateFinished), "yyyy-MM-dd")
-                    : "-"}
+              {item.status === "Completed" ? (
+                <div className={`${WatchlistCSS.outlineBox}`}>
+                  Date Finished:{" "}
+                  <span className={`${WatchlistCSS.red}`}>
+                    {format(new Date(item.dateFinished), "yyyy-MM-dd")}
+                  </span>
                 </div>
-              </div>
+              ) : null}
+            </div>
 
-              <div className={`${WatchlistCSS.boxContainer}`}>
-                <div>Favorite:</div>
-                <div>{item.favorite ? "true" : "false"}</div>
-              </div>
+            <div className={`${WatchlistCSS.smallText}`}>
+              {item.status === "To Watch" && (
+                <div
+                  className={`${WatchlistCSS.itemStatus} ${WatchlistCSS.blue}`}
+                >
+                  To Watch
+                </div>
+              )}
 
-              <div className={`${WatchlistCSS.boxContainer}`}>
-                <div>My Rating:</div>
-                <div>{item.myRating ? item.myRating : "-"}</div>
-              </div>
+              {item.status === "In Progress" && (
+                <div
+                  className={`${WatchlistCSS.itemStatus} ${WatchlistCSS.orange}`}
+                >
+                  In Progress
+                </div>
+              )}
+
+              {item.status === "Completed" && (
+                <div
+                  className={`${WatchlistCSS.itemStatus} ${WatchlistCSS.green}`}
+                >
+                  Completed
+                </div>
+              )}
             </div>
           </div>
         </div>

@@ -5,6 +5,42 @@
   src: url(../assets/fonts/Montserrat-VariableFont_wght.ttf);
 }
 
+.outlineBox {
+  border: 1px solid var(--gray-4);
+  border-radius: 1rem;
+  padding: 3px 10px;
+  margin-bottom: 5px;
+}
+
+.titleContainer {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  max-width: 800px;
+}
+
+.itemRating {
+  background-color: var(--gray-12);
+  border-radius: 10px;
+  color: white;
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 5px;
+  text-align: center;
+  width: 40px;
+}
+
+.itemStatus {
+  font-weight: 600;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 1rem;
+  max-width: 100px;
+  text-align: center;
+}
+
 .mainContainer {
   width: 100%;
   max-width: 1280px;
@@ -81,13 +117,6 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-  margin-top: 0.5rem;
-}
-
-.boxContainer {
-  border: 1px solid var(--gray-3);
-  border-radius: 5px;
-  padding: 10px;
 }
 
 label {
@@ -129,4 +158,16 @@ label {
 
 .gray {
   color: var(--gray-9);
+}
+
+.blue {
+  background-color: blue;
+}
+
+.orange {
+  background-color: orange;
+}
+
+.green {
+  background-color: green;
 }
