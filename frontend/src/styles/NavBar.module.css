@@ -56,6 +56,11 @@
   gap: 1rem;
 }
 
+.navButtons {
+  display: flex;
+  align-items: center;
+}
+
 .title {
   color: #ff0000;
   font-family: Jua;

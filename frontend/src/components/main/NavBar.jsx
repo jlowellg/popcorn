@@ -9,6 +9,11 @@ import { Button } from "../ui/button";
 import DataContext from "../../context/DataContext";
 import { useNavigate } from "react-router-dom";
 import UserNavigation from "../sub/UserNavigation";
+import {
+  HomeIcon,
+  PersonIcon,
+  DividerVerticalIcon,
+} from "@radix-ui/react-icons";
 
 const NavBar = () => {
   const { isLoggedIn } = useContext(DataContext);
@@ -32,17 +37,23 @@ const NavBar = () => {
           <SearchForm />
         </div>
         <div className={`${NavBarCSS.menu} ${NavBarCSS.navChild}`}>
-          <Link reloadDocument to="/">
-            Home
-          </Link>
-          |
-          {isLoggedIn || username ? (
-            <UserNavigation />
-          ) : (
-            <Link reloadDocument to="/login">
-              Sign in
-            </Link>
-          )}
+          <div className={`${NavBarCSS.navButtons}`}>
+            <Button variant="ghost">
+              <Link reloadDocument to="/">
+                <HomeIcon />
+              </Link>
+            </Button>
+            <DividerVerticalIcon />
+            {isLoggedIn || username ? (
+              <UserNavigation />
+            ) : (
+              <Button variant="ghost">
+                <Link reloadDocument to="/login">
+                  <PersonIcon />
+                </Link>
+              </Button>
+            )}
+          </div>
         </div>
       </div>
     </nav>
