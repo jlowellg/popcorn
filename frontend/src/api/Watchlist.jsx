@@ -170,7 +170,11 @@ const Watchlist = () => {
           <div className={`${WatchlistCSS.detailsContainer}`}>
             <div className={`${WatchlistCSS.titleContainer}`}>
               <div className={`${WatchlistCSS.title} ${WatchlistCSS.red}`}>
-                {item.title}
+                {item.type === "Movie" ? (
+                  <Link to={`/movie/${item.id}`}>{item.title}</Link>
+                ) : (
+                  <Link to={`/tv/${item.id}`}>{item.title}</Link>
+                )}
               </div>
               {item.myRating && item.status === "Completed" ? (
                 <div className={`${WatchlistCSS.itemRating}`}>
@@ -201,6 +205,15 @@ const Watchlist = () => {
                   Date Finished:{" "}
                   <span className={`${WatchlistCSS.red}`}>
                     {format(new Date(item.dateFinished), "yyyy-MM-dd")}
+                  </span>
+                </div>
+              ) : null}
+
+              {item.status === "In Progress" && item.currentEpisode ? (
+                <div className={`${WatchlistCSS.outlineBox}`}>
+                  Current Episode:{" "}
+                  <span className={`${WatchlistCSS.red}`}>
+                    {item.currentEpisode}
                   </span>
                 </div>
               ) : null}
