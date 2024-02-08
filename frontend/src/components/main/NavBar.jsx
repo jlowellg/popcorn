@@ -27,7 +27,7 @@ const NavBar = () => {
         >
           <Link reloadDocument to="/" className={`${NavBarCSS.lineContainer}`}>
             <img
-              src="\public\images\PopcornLogo.png"
+              src="/images/PopcornLogo.png"
               className={`${NavBarCSS.popcorn}`}
             />
             Popcorn
@@ -38,20 +38,20 @@ const NavBar = () => {
         </div>
         <div className={`${NavBarCSS.menu} ${NavBarCSS.navChild}`}>
           <div className={`${NavBarCSS.navButtons}`}>
-            <Button variant="ghost">
-              <Link reloadDocument to="/">
+            <Link reloadDocument to="/">
+              <Button variant="ghost">
                 <HomeIcon />
-              </Link>
-            </Button>
+              </Button>
+            </Link>
             <DividerVerticalIcon />
             {isLoggedIn || username ? (
               <UserNavigation />
             ) : (
-              <Button variant="ghost">
-                <Link reloadDocument to="/login">
+              <Link reloadDocument to="/login">
+                <Button variant="ghost">
                   <PersonIcon />
-                </Link>
-              </Button>
+                </Button>
+              </Link>
             )}
           </div>
         </div>

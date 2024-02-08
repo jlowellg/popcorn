@@ -73,7 +73,6 @@ export function EditWatchlistItem(data) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(itemStatus, itemCurrentEp, itemMyRating, itemDateFinished);
     setReload(!reload);
     try {
       const response = await axios.post(

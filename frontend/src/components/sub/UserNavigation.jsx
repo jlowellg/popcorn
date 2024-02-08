@@ -54,11 +54,11 @@ const UserNavigation = () => {
         <NavigationMenuItem>
           <NavigationMenuTrigger>{username}</NavigationMenuTrigger>
           <NavigationMenuContent>
-            <NavigationMenuLink className={NavBarCSS.userNavItem}>
-              <Link reloadDocument to="/watchlist">
+            <Link reloadDocument to="/watchlist">
+              <NavigationMenuLink className={NavBarCSS.userNavItem}>
                 Watchlist
-              </Link>
-            </NavigationMenuLink>
+              </NavigationMenuLink>
+            </Link>
             <NavigationMenuLink
               className={NavBarCSS.userNavItem}
               onClick={handleLogout}
