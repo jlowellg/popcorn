@@ -26,7 +26,7 @@ const LoginPage = () => {
     event.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:5000/user/login", {
+      const response = await axios.post("https://popcorn-eavz.onrender.com", {
         username,
         password,
       });
