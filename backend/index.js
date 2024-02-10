@@ -37,5 +37,5 @@ const connectDB = async () => {
 connectDB();
 
 app.use("/user", require("./routes/api/Users"));
-//app.use(verifyToken);
+app.use(verifyToken);
 app.use("/watchlist", require("./routes/api/Watchlists"));

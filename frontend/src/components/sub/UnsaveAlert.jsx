@@ -26,7 +26,7 @@ export function Unsave(data) {
     setReload(!reload);
     try {
       const response = await axios.get(
-        `http://localhost:5000/watchlist/unsave/${username}/${itemId}`
+        `https://popcorn-backend.onrender.com/watchlist/unsave/${username}/${itemId}`
       );
       toast({
         title: `${data.title} removed.`,

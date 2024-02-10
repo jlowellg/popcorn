@@ -29,7 +29,9 @@ const UserNavigation = () => {
   const handleLogout = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post("http://localhost:5000/user/logout");
+      const response = await axios.post(
+        "https://popcorn-backend.onrender.com/user/logout"
+      );
       localStorage.removeItem("username");
       console.log("Logout successful");
       navigate("/");

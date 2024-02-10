@@ -30,7 +30,7 @@ const TVInfo = () => {
     const fetchIfExisting = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/watchlist/check/${username}/${itemId}`
+          `https://popcorn-backend.onrender.com/watchlist/check/${username}/${itemId}`
         );
         setInWatchlist(response.data.exists);
       } catch (error) {
@@ -46,7 +46,7 @@ const TVInfo = () => {
     setInWatchlist(true);
     try {
       const response = await axios.post(
-        "http://localhost:5000/watchlist/add",
+        "https://popcorn-backend.onrender.com/watchlist/add",
         TVData
       );
       toast({
@@ -68,7 +68,7 @@ const TVInfo = () => {
     setInWatchlist(false);
     try {
       const response = await axios.get(
-        `http://localhost:5000/watchlist/unsave/${username}/${itemId}`
+        `https://popcorn-backend.onrender.com/watchlist/unsave/${username}/${itemId}`
       );
       toast({
         title: `${TVInfo.name} removed.`,

@@ -76,7 +76,7 @@ export function EditWatchlistItem(data) {
     setReload(!reload);
     try {
       const response = await axios.post(
-        `http://localhost:5000/watchlist/edit/${username}/${itemId}`,
+        `https://popcorn-backend.onrender.com/watchlist/edit/${username}/${itemId}`,
         itemData
       );
       toast({

@@ -31,7 +31,7 @@ const GetWatchlist = () => {
       setIsLoading(true);
       try {
         const response = await axios.get(
-          `http://localhost:5000/watchlist/get/${username}`
+          `https://popcorn-backend.onrender.com/watchlist/get/${username}`
         );
         setWatchlist(response.data);
       } catch (err) {

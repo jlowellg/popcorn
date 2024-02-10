@@ -45,7 +45,7 @@ const Watchlist = () => {
     setReload(!reload);
     try {
       const response = await axios.get(
-        `http://localhost:5000/watchlist/favorite/${username}/${itemId}`
+        `https://popcorn-backend.onrender.com/watchlist/favorite/${username}/${itemId}`
       );
       toast({
         title: `${response.data.message} added to favorites.`,
@@ -65,7 +65,7 @@ const Watchlist = () => {
     setReload(!reload);
     try {
       const response = await axios.get(
-        `http://localhost:5000/watchlist/unfavorite/${username}/${itemId}`
+        `https://popcorn-backend.onrender.com/watchlist/unfavorite/${username}/${itemId}`
       );
       toast({
         title: `${response.data.message} removed from favorites.`,

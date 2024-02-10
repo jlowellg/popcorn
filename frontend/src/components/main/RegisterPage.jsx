@@ -23,11 +23,14 @@ const RegisterPage = () => {
     event.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:5000/user/register", {
-        username,
-        password,
-        confirmPassword,
-      });
+      const response = await axios.post(
+        "https://popcorn-backend.onrender.com/user/register",
+        {
+          username,
+          password,
+          confirmPassword,
+        }
+      );
       navigate("/login");
       setAlertMessage(null);
       toast({
