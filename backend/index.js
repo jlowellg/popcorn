@@ -9,13 +9,11 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 
-/*app.use(
+app.use(
   cors({
-    origin: ["http://localhost:5173"],
-    method: ["GET", "POST"],
-    credentials: true,
+    origin: "https://popcorn-ncvr.onrender.com",
   })
-);*/
+);
 
 const PORT = process.env.PORT || 5000;
 
