@@ -39,6 +39,7 @@ router.post("/add", async (req, res) => {
 router.get("/get/:user", async (req, res) => {
   try {
     if (req.username !== req.params.user) {
+      console.log(req.username);
       return res.status(403).json({ message: "Forbidden: Access denied" });
     }
     const watchlist = await Watchlist.find({ user: req.params.user });
