@@ -26,10 +26,13 @@ const LoginPage = () => {
     event.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:5000/user/login", {
-        username,
-        password,
-      });
+      const response = await axios.post(
+        "https://popcorn-backend.onrender.com",
+        {
+          username,
+          password,
+        }
+      );
       const userInfo = response.data.userInfo;
       cookies.set("userInfo", userInfo, { path: "/" });
       setIsLoggedIn(userInfo);
