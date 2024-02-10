@@ -27,7 +27,7 @@ const LoginPage = () => {
 
     try {
       const response = await axios.post(
-        "https://popcorn-backend.onrender.com",
+        "https://popcorn-backend.onrender.com/user/login",
         {
           username,
           password,
