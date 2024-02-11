@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import axios from "axios";
 import React from "react";
 import DataContext from "../context/DataContext";
@@ -40,12 +40,14 @@ const TrendingTVShows = () => {
             className={`${HomepageCSS.listSubContainer}`}
             key={trendingTVShow.id}
           >
-            <div className={`${HomepageCSS.posterContainer}`}>
-              <img
-                className={`${HomepageCSS.poster}`}
-                src={`https://image.tmdb.org/t/p/original${trendingTVShow.poster_path}`}
-              />
-            </div>
+            <Link to={`/tv/${trendingTVShow.id}`}>
+              <div className={`${HomepageCSS.posterContainer}`}>
+                <img
+                  className={`${HomepageCSS.poster}`}
+                  src={`https://image.tmdb.org/t/p/original${trendingTVShow.poster_path}`}
+                />
+              </div>
+            </Link>
             <div
               className={`${HomepageCSS.titleContainer} ${HomepageCSS.title}`}
             >

@@ -10,12 +10,14 @@ const Results = () => {
     <>
       {results.map((result) => (
         <div className={`${ResultsCSS.resultsContainer}`} key={result.id}>
-          <div className={`${ResultsCSS.posterContainer}`}>
-            <img
-              className={`${ResultsCSS.poster}`}
-              src={`https://image.tmdb.org/t/p/original${result.poster_path}`}
-            />
-          </div>
+          <Link to={`/${result.title ? "movie" : "tv"}/${result.id}`}>
+            <div className={`${ResultsCSS.posterContainer}`}>
+              <img
+                className={`${ResultsCSS.poster}`}
+                src={`https://image.tmdb.org/t/p/original${result.poster_path}`}
+              />
+            </div>
+          </Link>
           <div className={`${ResultsCSS.detailsContainer}`}>
             <div
               className={`${ResultsCSS.lineContainer} ${ResultsCSS.title} ${ResultsCSS.red}`}

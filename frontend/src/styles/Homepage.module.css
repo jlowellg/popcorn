@@ -40,6 +40,10 @@
   @apply shadow;
 }
 
+.posterContainer :hover {
+  cursor: pointer;
+}
+
 .poster {
   width: 100%;
   height: auto;

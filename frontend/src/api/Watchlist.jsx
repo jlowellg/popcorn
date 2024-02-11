@@ -7,13 +7,10 @@ import WatchlistCSS from "../styles/Watchlist.module.css";
 import { Button } from "../components/ui/button";
 import { format } from "date-fns";
 import {
-  Pencil2Icon,
-  BookmarkIcon,
-  BookmarkFilledIcon,
   HeartIcon,
   HeartFilledIcon,
+  StarFilledIcon,
 } from "@radix-ui/react-icons";
-
 import { Unsave } from "../components/sub/UnsaveAlert";
 import { EditWatchlistItem } from "../components/sub/EditWatchlistItem";
 import { useToast } from "../components/ui/use-toast";
@@ -21,7 +18,6 @@ import { useToast } from "../components/ui/use-toast";
 const Watchlist = () => {
   const {
     watchlist,
-    setWatchlist,
     reload,
     setReload,
     filtered,
@@ -32,8 +28,6 @@ const Watchlist = () => {
     sorted,
     setSorted,
     ascending,
-    setAscending,
-    isLoading,
   } = useContext(DataContext);
 
   const username = localStorage.getItem("username");
@@ -160,12 +154,25 @@ const Watchlist = () => {
             <Unsave id={item.id} title={item.title} />
           </div>
 
-          <div className={`${WatchlistCSS.posterContainer}`}>
-            <img
-              className={`${WatchlistCSS.poster}`}
-              src={`https://image.tmdb.org/t/p/original${item.posterPath}`}
-            />
-          </div>
+          {item.type === "Movie" ? (
+            <Link to={`/movie/${item.id}`}>
+              <div className={`${WatchlistCSS.posterContainer}`}>
+                <img
+                  className={`${WatchlistCSS.poster}`}
+                  src={`https://image.tmdb.org/t/p/original${item.posterPath}`}
+                />
+              </div>
+            </Link>
+          ) : (
+            <Link to={`/tv/${item.id}`}>
+              <div className={`${WatchlistCSS.posterContainer}`}>
+                <img
+                  className={`${WatchlistCSS.poster}`}
+                  src={`https://image.tmdb.org/t/p/original${item.posterPath}`}
+                />
+              </div>
+            </Link>
+          )}
 
           <div className={`${WatchlistCSS.detailsContainer}`}>
             <div className={`${WatchlistCSS.titleContainer}`}>
@@ -178,7 +185,8 @@ const Watchlist = () => {
               </div>
               {item.myRating && item.status === "Completed" ? (
                 <div className={`${WatchlistCSS.itemRating}`}>
-                  {item.myRating}
+                  {item.myRating}{" "}
+                  <StarFilledIcon className={`${WatchlistCSS.starIcon}`} />
                 </div>
               ) : null}
             </div>
@@ -252,5 +260,3 @@ const Watchlist = () => {
 };
 
 export default Watchlist;
-
-//<Button onClick={() => handleUnsave(item.id)}>Unsave</Button>

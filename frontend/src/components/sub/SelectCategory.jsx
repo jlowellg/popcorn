@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useContext, useState, useEffect } from "react";
+import { useContext } from "react";
 import DataContext from "../../context/DataContext";
 
 import {
@@ -7,13 +7,12 @@ import {
   SelectContent,
   SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
 
 const SelectCategory = () => {
-  const { category, setCategory } = useContext(DataContext);
+  const { setCategory } = useContext(DataContext);
 
   const handleChange = (newValue) => {
     setCategory(newValue);

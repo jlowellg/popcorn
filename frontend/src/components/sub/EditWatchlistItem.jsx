@@ -15,7 +15,6 @@ import SelectStatus from "./SelectStatus";
 import { useContext, useEffect } from "react";
 import DataContext from "../../context/DataContext";
 import axios from "axios";
-import { AlertMessage } from "./AlertMessage";
 import { useToast } from "../ui/use-toast";
 
 export function EditWatchlistItem(data) {
@@ -30,7 +29,6 @@ export function EditWatchlistItem(data) {
     setReload,
     itemDateFinished,
     setItemDateFinished,
-    alertMessage,
     setAlertMessage,
   } = useContext(DataContext);
 

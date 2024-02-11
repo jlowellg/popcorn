@@ -1,5 +1,5 @@
 import React from "react";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import DataContext from "../context/DataContext";
 import HeroCSS from "../styles/Hero.module.css";
 import { Button } from "../components/ui/button";
@@ -8,7 +8,7 @@ import { BookmarkIcon, BookmarkFilledIcon } from "@radix-ui/react-icons";
 import { useToast } from "../components/ui/use-toast";
 
 const MovieInfo = () => {
-  const { movieInfo, genres, isLoggedIn, inWatchlist, setInWatchlist } =
+  const { movieInfo, genres, inWatchlist, setInWatchlist } =
     useContext(DataContext);
 
   const username = localStorage.getItem("username");
@@ -100,8 +100,13 @@ const MovieInfo = () => {
             />
           </div>
           <div className={`${HeroCSS.detailsContainer}`}>
-            <div className={` ${HeroCSS.largeTitle} ${HeroCSS.red}`}>
-              {movieInfo.title}
+            <div>
+              <div className={` ${HeroCSS.largeTitle} ${HeroCSS.red}`}>
+                {movieInfo.title}{" "}
+              </div>
+              <span className={`${HeroCSS.mediumTitle} ${HeroCSS.black}`}>
+                (Movie)
+              </span>
             </div>
             <div>
               <div className={`${HeroCSS.title}`}>Overview</div>

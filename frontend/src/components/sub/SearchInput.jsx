@@ -1,7 +1,7 @@
 import React from "react";
 import { Input } from "../ui/input";
 import DataContext from "../../context/DataContext";
-import { useContext, useState, useEffect } from "react";
+import { useContext } from "react";
 
 const SearchInput = () => {
   const { search, setSearch } = useContext(DataContext);

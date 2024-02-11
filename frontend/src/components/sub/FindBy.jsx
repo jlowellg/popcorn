@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useContext, useState, useEffect } from "react";
+import { useContext } from "react";
 import DataContext from "../../context/DataContext";
 import { DividerHorizontalIcon } from "@radix-ui/react-icons";
 
@@ -12,7 +12,7 @@ import {
 } from "../ui/select";
 
 const FindBy = () => {
-  const { findBy, setFindBy } = useContext(DataContext);
+  const { setFindBy } = useContext(DataContext);
 
   const handleChange = (newValue) => {
     setFindBy(newValue);

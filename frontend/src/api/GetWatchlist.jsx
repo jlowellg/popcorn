@@ -20,7 +20,6 @@ const GetWatchlist = () => {
     reload,
     ascending,
     setAscending,
-    sorted,
     alertMessage,
   } = useContext(DataContext);
 

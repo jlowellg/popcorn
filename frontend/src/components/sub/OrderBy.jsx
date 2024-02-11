@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useContext, useState, useEffect } from "react";
+import { useContext } from "react";
 import DataContext from "../../context/DataContext";
 
 import {
@@ -11,7 +11,7 @@ import {
 } from "../ui/select";
 
 const OrderBy = () => {
-  const { orderBy, setOrderBy } = useContext(DataContext);
+  const { setOrderBy } = useContext(DataContext);
 
   const handleChange = (newValue) => {
     setOrderBy(newValue);

@@ -1,9 +1,8 @@
 import React from "react";
 import axios from "axios";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import NavBarCSS from "../../styles/NavBar.module.css";
-import { Button } from "../ui/button";
 import { Link } from "react-router-dom";
 import DataContext from "../../context/DataContext";
 import { useToast } from "../ui/use-toast";

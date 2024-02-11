@@ -100,9 +100,15 @@ const TVInfo = () => {
             />
           </div>
           <div className={`${HeroCSS.detailsContainer}`}>
-            <div className={` ${HeroCSS.largeTitle} ${HeroCSS.red}`}>
-              {TVInfo.name}
+            <div>
+              <div className={`${HeroCSS.largeTitle} ${HeroCSS.red}`}>
+                {TVInfo.name}{" "}
+              </div>
+              <span className={`${HeroCSS.mediumTitle} ${HeroCSS.black}`}>
+                (Series)
+              </span>
             </div>
+
             <div>
               <div className={`${HeroCSS.title}`}>Overview</div>
               <div className={`${HeroCSS.normalText}`}>{TVInfo.overview}</div>

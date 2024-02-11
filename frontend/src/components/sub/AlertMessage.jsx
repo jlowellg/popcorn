@@ -1,5 +1,5 @@
-import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
-import { useContext, useEffect, useState } from "react";
+import { Alert, AlertDescription } from "../ui/alert";
+import { useContext, useEffect } from "react";
 import DataContext from "../../context/DataContext";
 
 export function AlertMessage() {

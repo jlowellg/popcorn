@@ -3,9 +3,6 @@ const router = express.Router();
 
 const Watchlist = require("../../models/Watchlist");
 
-const verifyToken = require("../../middleware/verifyToken");
-//const verifyToken = require("../api/Users");
-
 router.post("/add", async (req, res) => {
   try {
     const existingWatchlist = await Watchlist.findOne({
@@ -111,13 +108,13 @@ router.post("/edit/:user/:itemId", async (req, res) => {
   }
 
   try {
+    const myRating = parseFloat(req.body.myRating.toFixed(1));
     const item = await Watchlist.findOneAndUpdate(
       { user: req.params.user, id: req.params.itemId },
       {
         status: req.body.status,
         currentEpisode: req.body.currentEp,
-        myRating: req.body.myRating,
-
+        myRating: myRating,
         dateFinished: req.body.dateFinished,
       }
     );

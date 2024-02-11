@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useContext, useState, useEffect } from "react";
+import { useContext } from "react";
 import DataContext from "../../context/DataContext";
 import { DividerHorizontalIcon } from "@radix-ui/react-icons";
 import {
@@ -7,13 +7,12 @@ import {
   SelectContent,
   SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
 
 const SelectStatus = () => {
-  const { itemStatus, setItemStatus } = useContext(DataContext);
+  const { setItemStatus } = useContext(DataContext);
 
   const handleChange = (newValue) => {
     setItemStatus(newValue);
