@@ -108,13 +108,12 @@ router.post("/edit/:user/:itemId", async (req, res) => {
   }
 
   try {
-    const myRating = parseFloat(req.body.myRating.toFixed(1));
     const item = await Watchlist.findOneAndUpdate(
       { user: req.params.user, id: req.params.itemId },
       {
         status: req.body.status,
         currentEpisode: req.body.currentEp,
-        myRating: myRating,
+        myRating: parseFloat(req.body.myRating.toFixed(1)),
         dateFinished: req.body.dateFinished,
       }
     );

@@ -21,6 +21,7 @@
 }
 
 .itemRating {
+  align-items: center;
   background-color: var(--gray-12);
   border-radius: 10px;
   color: white;
@@ -29,6 +30,7 @@
   font-size: 16px;
   font-weight: bold;
   gap: 3px;
+  justify-content: center;
   padding: 5px;
   text-align: center;
   min-width: 40px;
