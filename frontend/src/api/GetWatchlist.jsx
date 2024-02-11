@@ -21,6 +21,7 @@ const GetWatchlist = () => {
     ascending,
     setAscending,
     alertMessage,
+    backendURL,
   } = useContext(DataContext);
 
   const username = localStorage.getItem("username");
@@ -30,7 +31,7 @@ const GetWatchlist = () => {
       setIsLoading(true);
       try {
         const response = await axios.get(
-          `https://popcorn-backend.onrender.com/watchlist/get/${username}`
+          `${backendURL}/watchlist/get/${username}`
         );
         setWatchlist(response.data);
       } catch (err) {

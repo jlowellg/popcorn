@@ -28,6 +28,7 @@ const Watchlist = () => {
     sorted,
     setSorted,
     ascending,
+    backendURL,
   } = useContext(DataContext);
 
   const username = localStorage.getItem("username");
@@ -39,7 +40,7 @@ const Watchlist = () => {
     setReload(!reload);
     try {
       const response = await axios.get(
-        `https://popcorn-backend.onrender.com/watchlist/favorite/${username}/${itemId}`
+        `${backendURL}/watchlist/favorite/${username}/${itemId}`
       );
       toast({
         title: `${response.data.message} added to favorites.`,
@@ -59,7 +60,7 @@ const Watchlist = () => {
     setReload(!reload);
     try {
       const response = await axios.get(
-        `https://popcorn-backend.onrender.com/watchlist/unfavorite/${username}/${itemId}`
+        `${backendURL}/watchlist/unfavorite/${username}/${itemId}`
       );
       toast({
         title: `${response.data.message} removed from favorites.`,

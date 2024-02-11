@@ -16,7 +16,7 @@ const LoginPage = () => {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const { setIsLoggedIn, alertMessage, setAlertMessage, setUserInfo } =
+  const { setIsLoggedIn, alertMessage, setAlertMessage, backendURL } =
     useContext(DataContext);
 
   const cookies = new Cookies();
@@ -26,13 +26,10 @@ const LoginPage = () => {
     event.preventDefault();
 
     try {
-      const response = await axios.post(
-        "https://popcorn-backend.onrender.com/user/login",
-        {
-          username,
-          password,
-        }
-      );
+      const response = await axios.post(`${backendURL}/user/login`, {
+        username,
+        password,
+      });
       const userInfo = response.data.userInfo;
       cookies.set("userInfo", userInfo, { path: "/" });
       setIsLoggedIn(userInfo);

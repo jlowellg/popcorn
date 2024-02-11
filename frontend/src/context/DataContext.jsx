@@ -30,6 +30,8 @@ export const DataProvider = ({ children }) => {
   const [itemDateFinished, setItemDateFinished] = useState();
   const [alertMessage, setAlertMessage] = useState();
 
+  const backendURL = import.meta.env.VITE_BACKEND_URL;
+
   return (
     <DataContext.Provider
       value={{
@@ -85,6 +87,7 @@ export const DataProvider = ({ children }) => {
         setItemDateFinished,
         alertMessage,
         setAlertMessage,
+        backendURL,
       }}
     >
       {children}

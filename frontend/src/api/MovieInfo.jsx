@@ -8,7 +8,7 @@ import { BookmarkIcon, BookmarkFilledIcon } from "@radix-ui/react-icons";
 import { useToast } from "../components/ui/use-toast";
 
 const MovieInfo = () => {
-  const { movieInfo, genres, inWatchlist, setInWatchlist } =
+  const { movieInfo, genres, inWatchlist, setInWatchlist, backendURL } =
     useContext(DataContext);
 
   const username = localStorage.getItem("username");
@@ -30,7 +30,7 @@ const MovieInfo = () => {
     const fetchIfExisting = async () => {
       try {
         const response = await axios.get(
-          `https://popcorn-backend.onrender.com/watchlist/check/${username}/${itemId}`
+          `${backendURL}/watchlist/check/${username}/${itemId}`
         );
         setInWatchlist(response.data.exists);
       } catch (error) {
@@ -46,7 +46,7 @@ const MovieInfo = () => {
     setInWatchlist(true);
     try {
       const response = await axios.post(
-        "https://popcorn-backend.onrender.com/watchlist/add",
+        `${backendURL}/watchlist/add`,
         movieData
       );
       toast({
@@ -68,7 +68,7 @@ const MovieInfo = () => {
     setInWatchlist(false);
     try {
       const response = await axios.get(
-        `https://popcorn-backend.onrender.com/watchlist/unsave/${username}/${itemId}`
+        `${backendURL}/watchlist/unsave/${username}/${itemId}`
       );
       toast({
         title: `${movieInfo.title} removed.`,

@@ -8,8 +8,14 @@ import { BookmarkIcon, BookmarkFilledIcon } from "@radix-ui/react-icons";
 import { useToast } from "../components/ui/use-toast";
 
 const TVInfo = () => {
-  const { TVInfo, genres, isLoggedIn, inWatchlist, setInWatchlist } =
-    useContext(DataContext);
+  const {
+    TVInfo,
+    genres,
+    isLoggedIn,
+    inWatchlist,
+    setInWatchlist,
+    backendURL,
+  } = useContext(DataContext);
 
   const username = localStorage.getItem("username");
   const { toast } = useToast();
@@ -30,7 +36,7 @@ const TVInfo = () => {
     const fetchIfExisting = async () => {
       try {
         const response = await axios.get(
-          `https://popcorn-backend.onrender.com/watchlist/check/${username}/${itemId}`
+          `${backendURL}/watchlist/check/${username}/${itemId}`
         );
         setInWatchlist(response.data.exists);
       } catch (error) {
@@ -45,10 +51,7 @@ const TVInfo = () => {
     event.preventDefault();
     setInWatchlist(true);
     try {
-      const response = await axios.post(
-        "https://popcorn-backend.onrender.com/watchlist/add",
-        TVData
-      );
+      const response = await axios.post(`${backendURL}/watchlist/add`, TVData);
       toast({
         title: `${TVInfo.name} added.`,
       });
@@ -68,7 +71,7 @@ const TVInfo = () => {
     setInWatchlist(false);
     try {
       const response = await axios.get(
-        `https://popcorn-backend.onrender.com/watchlist/unsave/${username}/${itemId}`
+        `${backendURL}/watchlist/unsave/${username}/${itemId}`
       );
       toast({
         title: `${TVInfo.name} removed.`,

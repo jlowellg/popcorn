@@ -11,7 +11,7 @@ app.use(cookieParser());
 
 app.use(
   cors({
-    origin: "https://popcorn-ncvr.onrender.com",
+    origin: process.env.FRONTEND_URL,
   })
 );
 

@@ -30,6 +30,7 @@ export function EditWatchlistItem(data) {
     itemDateFinished,
     setItemDateFinished,
     setAlertMessage,
+    backendURL,
   } = useContext(DataContext);
 
   const username = localStorage.getItem("username");
@@ -74,7 +75,7 @@ export function EditWatchlistItem(data) {
     setReload(!reload);
     try {
       const response = await axios.post(
-        `https://popcorn-backend.onrender.com/watchlist/edit/${username}/${itemId}`,
+        `${backendURL}/watchlist/edit/${username}/${itemId}`,
         itemData
       );
       toast({

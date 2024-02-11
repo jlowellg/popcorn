@@ -17,20 +17,17 @@ const RegisterPage = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const { alertMessage, setAlertMessage } = useContext(DataContext);
+  const { alertMessage, setAlertMessage, backendURL } = useContext(DataContext);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      const response = await axios.post(
-        "https://popcorn-backend.onrender.com/user/register",
-        {
-          username,
-          password,
-          confirmPassword,
-        }
-      );
+      const response = await axios.post(`${backendURL}/user/register`, {
+        username,
+        password,
+        confirmPassword,
+      });
       navigate("/login");
       setAlertMessage(null);
       toast({

@@ -20,7 +20,7 @@ import {
 
 const UserNavigation = () => {
   const navigate = useNavigate();
-  const { setIsLoggedIn } = useContext(DataContext);
+  const { setIsLoggedIn, backendURL } = useContext(DataContext);
   const username = localStorage.getItem("username");
 
   const { toast } = useToast();
@@ -28,9 +28,7 @@ const UserNavigation = () => {
   const handleLogout = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post(
-        "https://popcorn-backend.onrender.com/user/logout"
-      );
+      const response = await axios.post(`${backendURL}/user/logout`);
       localStorage.removeItem("username");
       console.log("Logout successful");
       navigate("/");

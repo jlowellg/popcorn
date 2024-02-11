@@ -17,7 +17,7 @@ import axios from "axios";
 import { useToast } from "../ui/use-toast";
 
 export function Unsave(data) {
-  const { reload, setReload } = useContext(DataContext);
+  const { reload, setReload, backendURL } = useContext(DataContext);
 
   const username = localStorage.getItem("username");
   const { toast } = useToast();
@@ -26,7 +26,7 @@ export function Unsave(data) {
     setReload(!reload);
     try {
       const response = await axios.get(
-        `https://popcorn-backend.onrender.com/watchlist/unsave/${username}/${itemId}`
+        `${backendURL}/watchlist/unsave/${username}/${itemId}`
       );
       toast({
         title: `${data.title} removed.`,
