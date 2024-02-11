@@ -113,7 +113,7 @@ router.post("/edit/:user/:itemId", async (req, res) => {
       {
         status: req.body.status,
         currentEpisode: req.body.currentEp,
-        myRating: parseFloat(req.body.myRating.toFixed(1)),
+        myRating: req.body.myRating,
         dateFinished: req.body.dateFinished,
       }
     );
