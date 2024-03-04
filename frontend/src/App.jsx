@@ -12,6 +12,7 @@ import LoginPage from "./components/main/LoginPage";
 import GetWatchlist from "./api/GetWatchlist";
 import RegisterPage from "./components/main/RegisterPage";
 import { Toaster } from "./components/ui/toaster";
+import PageNotFound from "./components/main/PageNotFound";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
               <Route path="/login" element={<LoginPage />} />
               <Route path="/register" element={<RegisterPage />} />
               <Route path="/watchlist" element={<GetWatchlist />} />
+              <Route path="*" element={<PageNotFound />} />
             </Routes>
           </KeyProvider>
           <Footer />

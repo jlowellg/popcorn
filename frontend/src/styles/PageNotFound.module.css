@@ -1,0 +1,21 @@
+.mainContainer {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-top: auto;
+}
+
+.mutedText {
+  font-family: sans-serif;
+  color: var(--gray-8);
+}
+
+.text404 {
+  font-size: 150px;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.mediumText {
+  font-size: 28px;
+}
